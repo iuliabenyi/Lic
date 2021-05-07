@@ -1,0 +1,176 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?",
+        "Hi there, how are you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "sad",
+      "patterns": [
+        "I am sad",
+        "I am not happy",
+        "I feel down"
+      ],
+      "responses": [
+        "What happened?",
+        "Do you know why is that?",
+        "Did anything happen?",
+        "On a scale from 1 to 10 how sad do you feel?",
+        "Can you figure out what triggered it?"
+      ]
+    },
+    {
+      "tag": "happy",
+      "patterns": [
+        "I am happy",
+        "I am not sad anymore"
+      ],
+      "responses": [
+        "I'm glad!",
+        "That's good, I'm happy I could help!"
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Tell me something funny!",
+        "Do you know a joke?"
+      ],
+      "responses": [
+        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+        "What did the buffalo say when his son left for college? Bison."
+      ]
+    },
+    {
+      "tag": "depressed",
+      "patterns": [
+        "I feel depressed",
+        "I feel numb",
+        "I don't feel anything"
+      ],
+      "responses": [
+        "Did this happen randomly?",
+        "Do you feel like this all the time?"
+      ]
+    },
+    {
+      "tag": "depressedRandom",
+      "patterns": [
+        "I feel like this for no reason",
+        "Randomly",
+        "It is random",
+        "It just happened",
+        "I don't feel like this all the time",
+        "It's not always like this",
+        "Just this time",
+        "I can't find a trigger"
+      ],
+      "responses": [
+        "Can you think back to the last trigger you remember?",
+        "Do you have any idea what might have triggered it?"
+      ]
+    },
+    {
+      "tag": "depressedRandomNoTrigger",
+      "patterns": [
+        "I can't find a trigger",
+        "Can not find a trigger",
+        "No trigger"
+      ],
+      "responses": [
+        "Did something bad happen? Do you want to talk about it?",
+        "Did something happen now or is it something from the past?"
+      ]
+    },
+    {
+      "tag": "depressedTrigger",
+      "patterns": [
+        "Fight",
+        "I feel alone",
+        "I feel lonely",
+        "Overthinking",
+        "Stress",
+        "Low self-esteem",
+        "Self-critical",
+        "Giving birth",
+        "Had a baby",
+        "Illness",
+        "Heart disease",
+        "Cancer",
+        "Abuse",
+        "Medication",
+        "Death",
+        "New job",
+        "Graduating",
+        "Personal problems"
+      ],
+      "responses": [
+        "Depression trigger"
+      ]
+    },
+    {
+      "tag": "depressedSomethingBadYes",
+      "patterns": [
+        "Something bad happened",
+        "Something happened now",
+        "It just happened",
+        "It happened in the past",
+        "It happened some time ago",
+        "It's been a while since it happened"
+      ],
+      "responses": [
+        "Do you feel comfortable talking about it?",
+        "Do you want to tell me what happened?"
+      ]
+    },
+    {
+      "tag": "depressedSomethingBadNo",
+      "patterns": [
+        "I want to talk about something else",
+        "I don't want to talk about it",
+        "Can we talk about something else?"
+      ],
+      "responses": [
+        "Ok, don't talk about it"
+      ]
+    },
+    {
+      "tag": "depressedAllTheTime",
+      "patterns": [
+        "All the time",
+        "It doesn't stop",
+        "Always",
+        "It is not random",
+        "It isn't random",
+        "It is happening for some time",
+        "It happens all the time"
+      ],
+      "responses": [
+        "Can you describe what you're feeling right now?"
+      ]
+    }
+  ]
+}
