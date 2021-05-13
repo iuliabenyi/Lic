@@ -1,18 +1,13 @@
 import random
 import json
-
 import torch
-
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
+from flask import render_template, request
+from login import *
+'''_response = ""
 
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
-bot_response = ""
-
-@app.route("/")
+@app.route('/chat')
 def home():
     return render_template("index.html")
 
@@ -63,8 +58,9 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
+# delete this later
 if __name__ == "__main__":
-    app.run()
+    app.run()'''
 
 
 
