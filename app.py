@@ -1,6 +1,6 @@
 import flask
-from flask import render_template
-
+from flask import render_template, redirect, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from login import *
 from chat import *
 
@@ -14,14 +14,20 @@ def login():
     if flask.request.method == 'GET':
         return render_template("login.html")
     # here if action = login and method = POST thee log in works but the chat page throws an error
-    email = flask.request.form['email']
-    if flask.request.form['password'] == users[email]['password']:
-        user = User()
-        user.id = email
-        flask_login.login_user(user)
-        return flask.redirect(flask.url_for('chat'))
-    return 'Bad login'
 
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+    user = User.query.filter_by(email=email).first()
+
+    # check if the user actually exists
+    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    if not user or not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('login'))  # if the user doesn't exist or password is wrong, reload the page
+
+    # if the above check passes, then we know the user has the right credentials
+    return redirect(url_for('chat'))
 
 @app.route('/protected')
 @flask_login.login_required
@@ -31,7 +37,28 @@ def protected():
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return 'Logged out'
+    return redirect(url_for('login'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup_post():
+    if flask.request.method == 'GET':
+        return render_template("signup.html")
+    else:
+        email = flask.request.form['email']
+        name = flask.request.form['name']
+        password = flask.request.form['password']
+
+        user = User.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in database
+        if user:  # if a user is found, we want to redirect back to signup page so user can try again
+            return redirect(url_for('signup_post'))
+
+        new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('login'))
+
+
 
 
 
@@ -40,7 +67,7 @@ def logout():
 bot_response = ""
 
 @app.route('/chat')
-def home():
+def chat():
     return render_template("index.html")
 
 @app.route("/get")

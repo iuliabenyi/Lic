@@ -1,8 +1,7 @@
-from flask import Flask
-
 import flask_login
-
-app = Flask(__name__)
+from models import User
+from __init__ import *
+app = create_app()
 
 app.secret_key = 'super secret string'
 login_manager = flask_login.LoginManager()
@@ -11,8 +10,6 @@ login_manager.init_app(app)
 
 users = {'foo@bar.tld': {'password': 'secret'}}
 
-class User(flask_login.UserMixin):
-    pass
 
 @login_manager.user_loader
 def user_loader(email):
@@ -23,7 +20,7 @@ def user_loader(email):
     user.id = email
     return user
 
-@login_manager.request_loaderF
+@login_manager.request_loader
 def request_loader(request):
     email = request.form.get('email')
     if email not in users:

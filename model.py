@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+from flask_login import UserMixin
 
 class NeuralNet(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
@@ -19,3 +20,4 @@ class NeuralNet(nn.Module):
         out = self.l3(out)
         # no activation and no softmax at the end
         return out
+
