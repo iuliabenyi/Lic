@@ -6,39 +6,33 @@
   <title>Suicide hotline chatbot</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
-  <form action='logout' method='GET'>
-      <input type="submit" class="btnLogout" name="btnLogout" value="Log out">
+  <form action='logout' btnLogoutmethod='GET'>
+      <input type="submit" id="btnLogout" name="btnLogout" value="Log out">
   </form>
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-bug"></i> Suicide Hotline Chatbot <i class="fas fa-bug"></i>
+        Suicide Hotline Chatbot
       </div>
     </header>
 
     <main class="msger-chat">
       <div class="msg left-msg">
         <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
-
         <div class="msg-bubble">
           <div class="msg-info">
             <div class="msg-info-name">ChatBot</div>
-            <!--div class="msg-info-time">${formatDate(new Date())}</div-->
           </div>
-
           <div class="msg-text">
             Hi, welcome to ChatBot! Go ahead and send me a message. 😄
           </div>
         </div>
       </div>
-
     </main>
 
     <form class="msger-inputarea">
@@ -46,6 +40,10 @@
       <button type="submit" class="msger-send-btn">Send</button>
     </form>
   </section>
+
+  <form action='finish' btnFinishmethod='GET'>
+      <input type="submit" id="btnFinish" name="btnFinish" value="Submit">
+  </form>
   <!-- partial -->
   <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
   <script>
@@ -54,8 +52,6 @@
     const msgerInput = get(".msger-input");
     const msgerChat = get(".msger-chat");
 
-
-    // Icons made by Freepik from www.flaticon.com
     const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
     const BOT_NAME = "ChatBot";

@@ -4,6 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from login import *
 from chat import *
 
+isLoggedIn = False
+currUser = User()
+bot_response = ""
+tagName = []
+
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
     if flask.request.method == 'GET':
@@ -11,12 +16,15 @@ def homePage():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global isLoggedIn
+    global currUser
     if flask.request.method == 'GET':
         return render_template("login.html")
     # here if action = login and method = POST thee log in works but the chat page throws an error
 
     email = request.form.get('email')
     password = request.form.get('password')
+    type = request.form.get('type')
     remember = True if request.form.get('remember') else False
     user = User.query.filter_by(email=email).first()
 
@@ -27,17 +35,24 @@ def login():
         return redirect(url_for('login'))  # if the user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
+    isLoggedIn = True
+    currUser = user
     return redirect(url_for('chat'))
 
 @app.route('/protected')
-@flask_login.login_required
 def protected():
-    return 'Logged in as: ' + flask_login.current_user.id
+    if isLoggedIn:
+        return 'Logged in as: ' + currUser.name
+    else:
+        return 'Not logged in'
 
 @app.route('/logout')
 def logout():
-    flask_login.logout_user()
+    global isLoggedIn
+    #flask_login.logout_user()
+    isLoggedIn = False
     return redirect(url_for('login'))
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_post():
@@ -59,12 +74,26 @@ def signup_post():
         return redirect(url_for('login'))
 
 
+@app.route('/finish')
+def finish():
+    s = ""
+    if flask.request.method == 'GET':
+        if bot_response != "null":
+            for t in tagName:
+                s = s + " " + t
+            return s
+        else:
+            return render_template("conclusion_page.html")
+    else:
+        return redirect(url_for('login'))
 
 
 
 
 
-bot_response = ""
+
+
+
 
 @app.route('/chat')
 def chat():
@@ -72,6 +101,8 @@ def chat():
 
 @app.route("/get")
 def get_bot_response():
+    global bot_response
+    global tagName
     userInput = request.args.get('msg')
     userText = tokenize(userInput)
     X = bag_of_words(userText, all_words)
@@ -90,7 +121,7 @@ def get_bot_response():
             if tag == intent["tag"]:
                 # print(f"{bot_name}: {random.choice(intent['responses'])}")
                 bot_response = random.choice(intent['responses'])
-
+                tagName.append(tag)
 
     else:
         # print(f"{bot_name}: I do not understand...")
