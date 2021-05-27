@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
 </head>
 <body>
-    <div id="title">Home page</div>
-    <form action='login' method='GET'>
-        <input id="btnLogin" type="submit" name="btnLogin" value="Log in">
-    </form>
+    <div class="d-flex justify-content-center" id="title">Home page</div>
+    <div class="d-flex justify-content-center">
+        <form action='login' method='GET'>
+            <input id="btnLogin" type="submit" name="btnLogin" value="Log in">
+        </form>
+    </div>
+
 
 </body>
 </html>

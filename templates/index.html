@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -55,9 +57,9 @@
     const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
     const BOT_NAME = "ChatBot";
-    const query = window.location.search;
-    const allParams = new URLSearchParams(query);
-    const PERSON_NAME = allParams.get('email');
+    var PERSON_NAME;
+
+    getUserName();
 
     msgerForm.addEventListener("submit", event => {
       event.preventDefault();
@@ -68,6 +70,7 @@
       appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
       msgerInput.value = "";
       botResponse(msgText);
+
     });
 
     function appendMessage(name, img, side, text) {
@@ -99,6 +102,17 @@
         console.log(data);
         const msgText = data;
         appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+      });
+
+    }
+
+    function getUserName() {
+
+      // User name
+      $.get("/userName").done(function (data) {
+        console.log(data);
+        PERSON_NAME = data;
 
       });
 

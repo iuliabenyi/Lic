@@ -1,5 +1,7 @@
 import flask
 from flask import render_template, redirect, url_for, flash
+from nltk_utils import stem
+from usersTable import usersTable
 from werkzeug.security import generate_password_hash, check_password_hash
 from login import *
 from chat import *
@@ -7,6 +9,7 @@ from chat import *
 isLoggedIn = False
 currUser = User()
 bot_response = ""
+bot_response2 = ""
 tagName = []
 
 @app.route('/', methods=['GET', 'POST'])
@@ -37,7 +40,29 @@ def login():
     # if the above check passes, then we know the user has the right credentials
     isLoggedIn = True
     currUser = user
-    return redirect(url_for('chat'))
+
+    if request.form['loginBtn'] == 'Log in as user':
+        return redirect(url_for('chat'))
+    elif request.form['loginBtn'] == 'Log in as therapist':
+        return redirect(url_for('therapist'))
+'''
+@app.route('/therapist')
+def therapist():
+    index = open("templates/therapist_page.html").read().format(therName=currUser.name, table=table)
+    return index'''
+
+@app.route('/therapist')
+def therapist():
+    results = User.query.all()
+    #print(results)
+    if not results:
+        return redirect(url_for('homePage'))
+    else:
+        table = usersTable(results)
+        table.border = True
+        #print(table.__html__())
+        index = open("templates/therapist_page.html").read().format(therName=currUser.name, table=table.__html__())
+        return index
 
 @app.route('/protected')
 def protected():
@@ -76,17 +101,26 @@ def signup_post():
 
 @app.route('/finish')
 def finish():
-    s = ""
+    """s = ""
     if flask.request.method == 'GET':
-        if bot_response != "null":
+        '''if bot_response != "null":
             for t in tagName:
                 s = s + " " + t
             return s
-        else:
-            return render_template("conclusion_page.html")
+        else:'''
+        return render_template("conclusion_page.html")
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('login'))"""
+    index = open("templates/final_page.html").read().format(userName=currUser.name, tags=tagName)
+    return index
 
+@app.route('/tags')
+def tags():
+    s = ""
+    for t in tagName :
+        s += t + ","
+
+    return s
 
 
 
@@ -98,6 +132,10 @@ def finish():
 @app.route('/chat')
 def chat():
     return render_template("index.html")
+
+@app.route("/userName")
+def get_user_name():
+    return currUser.name
 
 @app.route("/get")
 def get_bot_response():

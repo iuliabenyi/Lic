@@ -3,10 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Conclusions</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/conclusion_page.css') }}">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="title">Conclusions</div>
+    <div id="title" class="d-flex justify-content-center">Conclusions</div>
+    <!--<div id="userName" class="d-flex justify-content-center"></div>-->
+    <div>==================</div>
+
+
+
+    <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+    <script>
+        const name = get("userName");
+        var PERSON_NAME;
+        var tags = "";
+        var tagsArr;
+
+
+        getUserName();
+        //console.log(PERSON_NAME)
+        getTags();
+
+
+        function getUserName() {
+            // User name
+            $.get("/userName").done(function (data) {
+                //console.log(data);
+                PERSON_NAME = data;
+                $("#userName").text(data);
+
+            })
+        }
+
+        function getTags() {
+            // User name
+            $.get("/tags").done(function (data) {
+                //console.log(data);
+                tags = data;
+                tagsArr = tags.split(',');
+                //console.log(tagsArr);
+            })
+            console.log(tagsArr);
+        }
+
+
+
+
+        function get(selector, root = document) {
+      return root.querySelector(selector);
+    }
+
+    </script>
 
 </body>
 </html>
