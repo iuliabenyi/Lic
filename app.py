@@ -1,6 +1,8 @@
 import flask
 from flask import render_template, redirect, url_for, flash
+from models import UserPage
 from nltk_utils import stem
+from usersPageTable import usersPageTable
 from usersTable import usersTable
 from werkzeug.security import generate_password_hash, check_password_hash
 from login import *
@@ -8,9 +10,11 @@ from chat import *
 
 isLoggedIn = False
 currUser = User()
+currUserPage = UserPage()
 bot_response = ""
 bot_response2 = ""
 tagName = []
+inputUserName = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
@@ -51,18 +55,31 @@ def therapist():
     index = open("templates/therapist_page.html").read().format(therName=currUser.name, table=table)
     return index'''
 
-@app.route('/therapist')
+@app.route('/therapist', methods=['GET', 'POST'])
 def therapist():
-    results = User.query.all()
-    #print(results)
-    if not results:
-        return redirect(url_for('homePage'))
-    else:
-        table = usersTable(results)
-        table.border = True
-        #print(table.__html__())
-        index = open("templates/therapist_page.html").read().format(therName=currUser.name, table=table.__html__())
-        return index
+    global inputUserName
+    #results = User.query.all()
+    results = UserPage.query.all()
+    #table = usersTable(results)
+    table = usersPageTable(results)
+    table.border = True
+    if flask.request.method == 'GET':
+        return render_template("therapist_page.html", therName=currUser.name, table=table)
+    inputUserName = request.form.get('userName')
+    print("======== " + inputUserName + " ===========")
+    #print(table.__html__())
+    if flask.request.method == 'POST':
+        return redirect(url_for('temporary'))
+
+@app.route('/temporary', methods=['GET', 'POST'])
+def temporary():
+    print(inputUserName)
+    userTagsTable = UserPage.query.filter_by(userName='a').all()
+    userTags = []
+    for u in userTagsTable:
+        userTags.append(u.userTags)
+    return render_template("final_page.html", userName="a", tags=userTags)
+
 
 @app.route('/protected')
 def protected():
@@ -101,18 +118,17 @@ def signup_post():
 
 @app.route('/finish')
 def finish():
-    """s = ""
+    s = ""
     if flask.request.method == 'GET':
-        '''if bot_response != "null":
-            for t in tagName:
-                s = s + " " + t
-            return s
-        else:'''
-        return render_template("conclusion_page.html")
+        for i in tagName:
+            new_user_page = UserPage(userId=currUser.id, userName=currUser.name, userTags=i)
+            db.session.add(new_user_page)
+            db.session.commit()
+        return render_template("final_page.html", userName=currUser.name, tags=tagName)
     else:
-        return redirect(url_for('login'))"""
-    index = open("templates/final_page.html").read().format(userName=currUser.name, tags=tagName)
-    return index
+        return redirect(url_for('login'))
+    #index = open("templates/final_page.html").read().format(userName=currUser.name, tags=tagName)
+    #return index
 
 @app.route('/tags')
 def tags():

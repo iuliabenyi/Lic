@@ -1,7 +1,7 @@
 {
   "intents": [
     {
-      "tag": "greeting",
+      "tag": "Greeting ",
       "patterns": [
         "Hi",
         "Hey",
@@ -18,7 +18,18 @@
       ]
     },
     {
-      "tag": "goodbye",
+      "tag": "Thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Thank you very much"
+      ],
+      "responses": [
+        "You are welcome, I am glad I could help!"
+      ]
+    },
+    {
+      "tag": "Goodbye ",
       "patterns": ["Bye", "See you later", "Goodbye"],
       "responses": [
         "See you later, thanks for visiting",
@@ -27,7 +38,7 @@
       ]
     },
     {
-      "tag": "sad",
+      "tag": "Sad ",
       "patterns": [
         "I am sad",
         "I am not happy",
@@ -42,7 +53,7 @@
       ]
     },
     {
-      "tag": "happy",
+      "tag": "Happy ",
       "patterns": [
         "I am happy",
         "I am not sad anymore"
@@ -53,7 +64,7 @@
       ]
     },
     {
-      "tag": "funny",
+      "tag": "Funny ",
       "patterns": [
         "Tell me a joke!",
         "Tell me something funny!",
@@ -65,19 +76,7 @@
       ]
     },
     {
-      "tag": "depressed",
-      "patterns": [
-        "I feel depressed",
-        "I feel numb",
-        "I don't feel anything"
-      ],
-      "responses": [
-        "Did this happen randomly?",
-        "Do you feel like this all the time?"
-      ]
-    },
-    {
-      "tag": "depressedRandom",
+      "tag": "Depressed random ",
       "patterns": [
         "I feel like this for no reason",
         "Randomly",
@@ -94,11 +93,12 @@
       ]
     },
     {
-      "tag": "depressedRandomNoTrigger",
+      "tag": "Depressed random no trigger ",
       "patterns": [
         "I can't find a trigger",
         "Can not find a trigger",
-        "No trigger"
+        "No trigger",
+        "Can't find trigger"
       ],
       "responses": [
         "Did something bad happen? Do you want to talk about it?",
@@ -106,8 +106,28 @@
       ]
     },
     {
-      "tag": "depressedTrigger",
+      "tag": "More things ",
       "patterns": [
+        "A lot of things happened",
+        "It is too much",
+        "there is a lot",
+        "It's too much",
+        "Some things happened",
+        "A few things happened"
+      ],
+      "responses": [
+        "That's not a problem, go ahead and tell me about it",
+        "I am here for you, talk to me",
+        "You can tell me anything",
+        "Start from the beginning and tell me everything"
+      ]
+    },
+    {
+      "tag": "Depressed ",
+      "patterns": [
+        "I feel depressed",
+        "I feel numb",
+        "I don't feel anything",
         "Fight",
         "I feel alone",
         "I feel lonely",
@@ -120,7 +140,6 @@
         "Illness",
         "Heart disease",
         "Cancer",
-        "Abuse",
         "Medication",
         "Death",
         "New job",
@@ -128,11 +147,12 @@
         "Personal problems"
       ],
       "responses": [
-        "Depression trigger"
+        "Did this happen randomly?",
+        "Do you feel like this all the time?"
       ]
     },
     {
-      "tag": "depressedSomethingBadYes",
+      "tag": "Depressed something bad yes ",
       "patterns": [
         "Something bad happened",
         "Something happened now",
@@ -147,7 +167,7 @@
       ]
     },
     {
-      "tag": "depressedSomethingBadNo",
+      "tag": "Depressed something bad no ",
       "patterns": [
         "I want to talk about something else",
         "I don't want to talk about it",
@@ -158,7 +178,7 @@
       ]
     },
     {
-      "tag": "depressedAllTheTime",
+      "tag": "Depressed all the time ",
       "patterns": [
         "All the time",
         "It doesn't stop",
@@ -170,6 +190,309 @@
       ],
       "responses": [
         "Can you describe what you're feeling right now?"
+      ]
+    },
+    {
+      "tag": "Abuse ",
+      "patterns": [
+        "I have been abused",
+        "I've been abused",
+        "I was assaulted",
+        "I am being abused",
+        "I was abused"
+      ],
+      "responses": [
+        "Did this happen with your family, with a stranger or in your relationship?",
+        "You are not responsible for what happened to you",
+        "You can talk to me about this, it wasn't yor fault, I won't judge you",
+        "I care about you, you can tell me more if you are comfortable with it",
+        "If you feel the need to talk to someone in real life you can join a support group",
+        "Real life help is available if you need it"
+      ]
+    },
+    {
+      "tag": "Abuse family ",
+      "patterns": [
+        "With my family",
+        "In my family",
+        "My family",
+        "It happened in my family"
+      ],
+      "responses": [
+        "Can you tell me more about it?"
+      ]
+    },
+    {
+      "tag": "Abuse relationship ",
+      "patterns": [
+        "This happened in my relationship",
+        "In my relationship",
+        "My boyfriend did this to me",
+        "My husband did this to me",
+        "My boyfriend abused me",
+        "My husband abused me",
+        "My husband hit me",
+        "My husband beat me"
+      ],
+      "responses": [
+        "This behaviour is not acceptable, you should leave them immediately",
+        "You are not safe in your home, you have to leave that relationship right now",
+        "You need to leave, try asking a friend or a family member for shelter",
+        "Domestic violence is a crime, you have to call the police"
+      ]
+    },
+    {
+      "tag": "Alone ",
+      "patterns": [
+        "I feel alone",
+        "I feel so alone",
+        "I am alone",
+        "I am lonely",
+        "I am very lonely",
+        "It feels like I am alone"
+      ],
+      "responses": [
+        "Are you really alone or are you just feeling this way?"
+      ]
+    },
+    {
+      "tag": "Alone really ",
+      "patterns": [
+        "I am really alone",
+        "I have no friends",
+        "I have nobody to talk to",
+        "I don't have any friends",
+        "I don't have a family"
+      ],
+      "responses": [
+        "I can be your temporary friend, but you will need human interaction too. Do you want to hear a joke?",
+        "You can talk to me anytime, I am always here",
+        "Did you try talking to other people online? Sometimes this is a good start"
+      ]
+    },
+    {
+      "tag": "Alone feeling ",
+      "patterns": [
+        "I just feel alone",
+        "I only feel alone",
+        "It is just a feeling"
+      ],
+      "responses": [
+        "Try calling or texting a friend or family member, I am sure they will appreciate it",
+        "Your friends and family are there for you, you just have to try and reach out"
+      ]
+    },
+    {
+      "tag": "Overthinking ",
+      "patterns": [
+        "I am overthinking",
+        "I'm overthinking",
+        "I overthink a lot",
+        "I overthink everything",
+        "I am overthinking too much",
+        "I overthink too much"
+      ],
+      "responses": [
+        "Nobody can ever be perfect, you have to accept who you are and that sometimes you make mistakes",
+        "It's ok to make mistakes sometimes, don't beat yourself up over this",
+        "You have to start being more kind to yourself, everybody makes mistakes",
+        "Did you always overthink this much?"
+      ]
+    },
+    {
+      "tag": "Stress ",
+      "patterns": [
+        "I am really stressed",
+        "I feel like the stress is too much",
+        "I am always stressed",
+        "Everything stresses me out",
+        "The stress is unbearable",
+        "I am stressed"
+      ],
+      "responses": [
+        "You have to learn how to manage your priorities, do you feel like there are some things that stress you out too much?",
+        "You should make some time to disconnect from your problems at least once a day",
+        "I think going for a walk would help you clear your mind",
+        "Do you have anything you like to do and could do now?",
+        "Maybe taking a break for an hour and reading something would clear your mind",
+        "Did you ever try meditating? It will clear your mind"
+      ]
+    },
+    {
+      "tag": "Low self esteem ",
+      "patterns": [
+        "I am not confident at all",
+        "I feel useless",
+        "I have low self-esteem",
+        "I feel not good enough",
+        "I am not enough"
+      ],
+      "responses": [
+        "You are enough for the people that love you",
+        "I can promise you are enough and worthy",
+        "You are smart and kind, you are worth more than you think"
+      ]
+    },
+    {
+      "tag": "Illness ",
+      "patterns": [
+        "I am ill",
+        "Someone else is ill",
+        "I am sick",
+        "someone else is sick",
+        "is sick",
+        "is ill"
+      ],
+      "responses": [
+        "Illnesses are part of the human life, I know it is hard but you have to fight to be strong",
+        "I know how hard it is, make sure you remain strong and make the best of this experience, both for you and for the ones around you",
+        "There are great chances it will get better, you have to remain optimistic about it"
+      ]
+    },
+    {
+      "tag": "Death ",
+      "patterns": [
+        "Someone passed away",
+        "Someone in my family passed away",
+        "Someone died",
+        "Someone in my family died",
+        "A friend passed away",
+        "A friend died"
+      ],
+      "responses": [
+        "Death is one of the hardest parts of life, make sure you take your time to grieve",
+        "Make sure you take your time to grieve but then you get back up",
+        "Take time to remember all the great memories you have with this person"
+      ]
+    },
+    {
+      "tag": "Substance abuse ",
+      "patterns": [
+      ],
+      "responses": [
+      ]
+    },
+    {
+      "tag": "Suicidal ",
+      "patterns": [
+        "I want to die",
+        "I want to kill myself",
+        "I don't want to live anymore",
+        "I am sick of living",
+        "I want everythig to end",
+        "I want it to end",
+        "I can't take it anymore",
+        "I can't live anymore"
+      ],
+      "responses": [
+        "This is not the answer, talk to me about it so I can help you",
+        "Don't make a permanent decision for something temporary, tell me what happened",
+        "You don't have to do this, you are just going through a rough patch now, tell me about it",
+        "I am sure you don't want this, you just want the pain to stop, talk to me, I can help you with that"
+      ]
+    },
+    {
+      "tag": "Anxiety ",
+      "patterns": [
+        "I feel so restless",
+        "It feels like I can't stand still",
+        "I feel on edge",
+        "I am so exhausted",
+        "My mind feels blank",
+        "I can't focus",
+        "I feel worried all the time",
+        "I feel so worried",
+        "I can't sleep anymore"
+      ],
+      "responses": [
+        "Try to take 10 minutes time out and focus on your breathing",
+        "Do you usually consume caffeine or alcohol?",
+        "You need to get enough sleep and exercise a bit",
+        "Let's count to 10 together",
+        "Tell me what you feel right now"
+      ]
+    },
+    {
+      "tag": "Count1",
+      "patterns": [
+        "1"
+      ],
+      "responses": [
+        "2"
+      ]
+    },
+    {
+      "tag": "Count2",
+      "patterns": [
+        "3"
+      ],
+      "responses": [
+        "4"
+      ]
+    },
+    {
+      "tag": "Count3",
+      "patterns": [
+        "5"
+      ],
+      "responses": [
+        "6"
+      ]
+    },
+    {
+      "tag": "Count4",
+      "patterns": [
+        "7"
+      ],
+      "responses": [
+        "8"
+      ]
+    },
+    {
+      "tag": "Count5",
+      "patterns": [
+        "9"
+      ],
+      "responses": [
+        "10"
+      ]
+    },
+    {
+      "tag": "Count6",
+      "patterns": [
+        "10"
+      ],
+      "responses": [
+        "Do you feel a little bit better or calmer?"
+      ]
+    },
+    {
+      "tag": "Calm",
+      "patterns": [
+        "I feel better",
+        "I feel much better",
+        "I think I am better"
+      ],
+      "responses": [
+        "I am glad I could help, is there anything else you want to talk about?"
+      ]
+    },
+    {
+      "tag": "Panic ",
+      "patterns": [
+        "I am having palpitations",
+        "My heart beats fast",
+        "I am sweating a lot",
+        "I am shaking",
+        "My hands are shaking",
+        "I am trembling",
+        "I am choking",
+        "it feels like I am being choked",
+        "I feel like I am losing control"
+      ],
+      "responses": [
+        "Try to close your eyes and focus on your breathing",
+        "Focus on your breathing for 10 seconds, let's count together"
       ]
     }
   ]

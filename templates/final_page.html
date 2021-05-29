@@ -3,21 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <title>Conclusions</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/conclusion_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/conclusion_page.css') }}">
+    <!--<link href="conclusion_page.css" rel="stylesheet" type="text/css">-->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
   <div id="title" class="d-flex justify-content-center">Conclusions</div>
-    <div id="userName" class="d-flex justify-content-center">{userName:}</div>
-    <div id="tags" class="d-flex justify-content-center">{tags:}</div>
+    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>
+
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row">
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="col-sm-8 col-md-6">
+                    <div class="card">
+                        <div class="card-body" style="height:
+                        320px">
+                            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div> <canvas id="chart-line" width="299" height="120" class="chartjs-render-monitor" style="display: block; width: 299px; height: 120px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="d-flex justify-content-center">
+    <div id="suicidalTag"></div>
+    <div class="b4-test">
+      <progress id="suicidalProgress" class="progress" max="100"></progress>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+      <div id="anxietyTag"></div>
+    <div class="b4-test">
+      <progress id="anxietyProgress" class="progress" max="100"></progress>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+      <div id="panicTag"></div>
+    <div class="b4-test">
+      <progress id="panicProgress" class="progress" max="100"></progress>
+    </div>
+  </div>
+
+
 
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 <script>
-    var tagsHtml = document.getElementById("tags").innerText;
-    var tags = tagsHtml.split(",");
+    //var tagsHtml = document.getElementById("tags").innerText;
+    //var tags = tagsHtml.split(/,| /);
+    let tagsRaw = '{{tags}}';
+    var tags = tagsRaw.split(/&#39;|,| /);
     console.log(tags);
+
+    console.log(tags);
+    let unique = [...new Set(tags)];
+    let duplicates = unique.map(value => [value, tags.filter(str => str === value).length]);
+    console.log(duplicates);
+    duplicates.sort((a, b) => a[1].toString().localeCompare(b[1]));
+    console.log(duplicates);
+
+    var top1 = "",top2 = "",top3 = "", nTop1 = 0, nTop2 = 0, nTop3 = 0;
+    for(let i = duplicates.length - 1; i >=0; i--) {
+        if(top1 === "")
+            if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
+                if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
+                    {
+                        top1 = duplicates[i][0];
+                        nTop1 = duplicates[i][1];
+                        i--;
+                    }
+        if(top2 === "")
+            if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
+                if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
+                    {
+                        top2 = duplicates[i][0];
+                        nTop2 = duplicates[i][1];
+                        i--;
+                    }
+        if(top3 === "")
+            if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
+                if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
+                    {
+                        top3 = duplicates[i][0];
+                        nTop3 = duplicates[i][1];
+                        i--;
+                    }
+    }
+    if(top1 === "Low")
+        top1 = "Low self esteem";
+    if(top2 === "Low")
+        top2 = "Low self esteem";
+    if(top3 === "Low")
+        top3 = "Low self esteem";
+    if(top1 === "Substance")
+        top1 = "Substance abuse";
+    if(top2 === "Substance")
+        top2 = "Substance abuse";
+    if(top3 === "Substance")
+        top3 = "Substance abuse";
+
+
+
+    console.log(top1, nTop1, top2, nTop2, top3, nTop3);
+
+    $(document).ready(function() {
+        var ctx = $("#chart-line");
+        var myLineChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [top1, top2, top3],
+                datasets: [{
+                    data: [nTop1, nTop2, nTop3],
+                    backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]
+                }]
+            },
+            options: {
+                title: {
+                }
+            }
+        });
+    });
+    var suicidalN = 0, anxietyN = 0, panicN = 0;
+    for(let i = 0; i < duplicates.length; i++) {
+        if(duplicates[i][0].includes("Suicidal"))
+            suicidalN = duplicates[i][1];
+        if(duplicates[i][0].includes("Anxiety"))
+            anxietyN = duplicates[i][1];
+        if(duplicates[i][0].includes("Panic"))
+            panicN = duplicates[i][1];
+
+    }
+    console.log(suicidalN, anxietyN, panicN);
+
+
+    document.getElementById("suicidalTag").innerText = "Suicidal";
+    document.getElementById("suicidalProgress").value = suicidalN * 10;
+    if(suicidalN >= 5 && suicidalN < 7.5)
+        document.getElementById('suicidalProgress').style.backgroundColor = 'yellow';
+    if(suicidalN >= 7.5)
+        $('#suicidalProgress').addClass("red");
+
+    document.getElementById("anxietyTag").innerText = "Anxiety";
+    document.getElementById("anxietyProgress").value = anxietyN * 10;
+    document.getElementById("panicTag").innerText = "Panic";
+    document.getElementById("panicProgress").value = panicN * 10;
+
+
+
 </script>
 
 
