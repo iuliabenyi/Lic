@@ -58,27 +58,26 @@ def therapist():
 @app.route('/therapist', methods=['GET', 'POST'])
 def therapist():
     global inputUserName
-    #results = User.query.all()
-    results = UserPage.query.all()
-    #table = usersTable(results)
-    table = usersPageTable(results)
+    results = User.query.all()
+    #results = UserPage.query.all()
+    table = usersTable(results)
+    #table = usersPageTable(results)
     table.border = True
     if flask.request.method == 'GET':
         return render_template("therapist_page.html", therName=currUser.name, table=table)
-    inputUserName = request.form.get('userName')
-    print("======== " + inputUserName + " ===========")
     #print(table.__html__())
     if flask.request.method == 'POST':
+        inputUserName = request.form.get('userName')
         return redirect(url_for('temporary'))
 
 @app.route('/temporary', methods=['GET', 'POST'])
 def temporary():
     print(inputUserName)
-    userTagsTable = UserPage.query.filter_by(userName='a').all()
+    userTagsTable = UserPage.query.filter_by(userName=inputUserName).all()
     userTags = []
     for u in userTagsTable:
         userTags.append(u.userTags)
-    return render_template("final_page.html", userName="a", tags=userTags)
+    return render_template("final_page.html", userName=inputUserName, tags=userTags)
 
 
 @app.route('/protected')

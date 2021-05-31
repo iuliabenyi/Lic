@@ -193,7 +193,7 @@
       ]
     },
     {
-      "tag": "Abuse ",
+      "tag": "Abused ",
       "patterns": [
         "I have been abused",
         "I've been abused",
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "tag": "Abuse family ",
+      "tag": "Abused family ",
       "patterns": [
         "With my family",
         "In my family",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "tag": "Abuse relationship ",
+      "tag": "Abused relationship ",
       "patterns": [
         "This happened in my relationship",
         "In my relationship",
