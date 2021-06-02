@@ -1,7 +1,12 @@
  body {
-     background-color: #f9f9fa;
-     margin: 50px;
- }
+    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-repeat: no-repeat;
+    min-height: 657px;
+}
+
+#navBar {
+    background: #ffedf9;
+}
 
  .flex {
      -webkit-box-flex: 1;
@@ -64,13 +69,72 @@
  }
 
  .b4-test{
-      padding:50px;
+      /*padding:50px;*/
       width:500px;
-      margin:50px auto;
+      /*margin:50px auto;*/
       text-align:center;
-      background:#ccc;
 }
 
  #title {
      font-size: 50px;
+ }
+
+ #userName {
+     font-size: 30px;
+ }
+
+ #btnHome {
+  font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+
+ #btnLogout {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  background-color: #c86071;
+  color: white;
+}
+
+ #page-content {
+     margin-left: -450px;
+     margin-top: -50px;
+ }
+
+ #page-content2 {
+     height: 350px;
+ }
+
+ #suicidalDiv {
+     margin-left: 890px;
+     margin-right: 20px;
+     margin-top: -433px;
+ }
+
+ #anxietyDiv {
+     margin-left: 890px;
+     margin-right: 20px;
+ }
+
+ #panicDiv {
+     margin-left: 890px;
+     margin-right: 20px;
+ }
+
+ #suicidalProgress {
+     margin-top: 30px;
+ }
+
+ #anxietyProgress {
+     margin-top: 30px;
+ }
+
+ #panicProgress {
+     margin-top: 30px;
  }

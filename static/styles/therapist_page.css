@@ -1,0 +1,48 @@
+body {
+    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-repeat: no-repeat;
+    min-height: 657px;
+}
+
+#navBar {
+    background: #ffedf9;
+}
+
+#btnHome {
+  font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+
+ #btnLogout {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  background-color: #c86071;
+  color: white;
+}
+
+ #pageBtn {
+     font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+ }
+
+ #messageBtn {
+     font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+ }

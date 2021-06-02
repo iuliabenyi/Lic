@@ -1,0 +1,43 @@
+body {
+    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-repeat: no-repeat;
+    min-height: 657px;
+}
+#allLogin {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#title {
+    margin-bottom: 60px;
+}
+
+#emailDiv {
+}
+
+#passwordDiv {
+    margin-bottom: 40px;
+}
+
+#userBtn {
+    margin-bottom: 20px;
+    background-color: #c86071;
+    color: white;
+}
+
+#therBtn {
+    margin-bottom: 20px;
+    background-color: #c86071;
+    color: white;
+}
+
+
+#btnSignup {
+    /*margin-right: 10px;*/
+    margin-left: 20px;
+    background-color: #c86071;
+}

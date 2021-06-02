@@ -1,8 +1,39 @@
-#btnLogin{
+body {
+    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-repeat: no-repeat;
+    min-height: 657px;
+}
+
+#navBar {
+    background: #ffedf9;
 }
 
 #title {
-    font-size: 20px;
-    margin-left: 100px;
+    font-size: 50px;
+    /*color: white;*/
 }
+
+#subtitle {
+    font-size: 40px;
+    text-align: -webkit-center;
+    margin-top: 60px;
+}
+
+#description {
+    font-size: 20px;
+    text-align: -webkit-center;
+    margin-top: 100px;
+}
+
+#btnLogin {
+    margin-left: 1150px;
+    background-color: #c86071;
+}
+
+#btnSignup {
+    /*margin-right: 10px;*/
+    margin-left: 20px;
+    background-color: #c86071;
+}
+
 

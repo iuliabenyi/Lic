@@ -1,6 +1,7 @@
 import flask
 from flask import render_template, redirect, url_for, flash
-from models import UserPage
+from flask_table import Col
+from models import UserPage, Users
 from nltk_utils import stem
 from usersPageTable import usersPageTable
 from usersTable import usersTable
@@ -9,12 +10,13 @@ from login import *
 from chat import *
 
 isLoggedIn = False
-currUser = User()
+#currUser = User()
+currUser = Users()
 currUserPage = UserPage()
 bot_response = ""
-bot_response2 = ""
 tagName = []
 inputUserName = ""
+currMainTag = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
@@ -31,9 +33,9 @@ def login():
 
     email = request.form.get('email')
     password = request.form.get('password')
-    type = request.form.get('type')
-    remember = True if request.form.get('remember') else False
-    user = User.query.filter_by(email=email).first()
+    #type = request.form.get('type')
+    #remember = True if request.form.get('remember') else False
+    user = Users.query.filter_by(email=email).first()
 
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
@@ -44,21 +46,18 @@ def login():
     # if the above check passes, then we know the user has the right credentials
     isLoggedIn = True
     currUser = user
+    #currUser.name = "AAAAAAAAAAAAAAAA"
 
-    if request.form['loginBtn'] == 'Log in as user':
+    #if request.form['loginBtn'] == 'Log in as user':
+    if currUser.type == "user":
         return redirect(url_for('chat'))
-    elif request.form['loginBtn'] == 'Log in as therapist':
+    elif currUser.type == "therapist":
         return redirect(url_for('therapist'))
-'''
-@app.route('/therapist')
-def therapist():
-    index = open("templates/therapist_page.html").read().format(therName=currUser.name, table=table)
-    return index'''
 
 @app.route('/therapist', methods=['GET', 'POST'])
 def therapist():
     global inputUserName
-    results = User.query.all()
+    results = Users.query.filter_by(type='user').all()
     #results = UserPage.query.all()
     table = usersTable(results)
     #table = usersPageTable(results)
@@ -68,7 +67,10 @@ def therapist():
     #print(table.__html__())
     if flask.request.method == 'POST':
         inputUserName = request.form.get('userName')
-        return redirect(url_for('temporary'))
+        if request.form['button'] == 'See their page':
+            return redirect(url_for('temporary'))
+        if request.form['button'] == 'Send a message':
+            return render_template("message_page.html", therName=currUser.name, userName=inputUserName)
 
 @app.route('/temporary', methods=['GET', 'POST'])
 def temporary():
@@ -103,12 +105,13 @@ def signup_post():
         email = flask.request.form['email']
         name = flask.request.form['name']
         password = flask.request.form['password']
+        type = flask.request.form['type']
 
-        user = User.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in database
+        user = Users.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in database
         if user:  # if a user is found, we want to redirect back to signup page so user can try again
             return redirect(url_for('signup_post'))
 
-        new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+        new_user = Users(email=email, name=name, password=generate_password_hash(password, method='sha256'), type=type, mainTag="")
         db.session.add(new_user)
         db.session.commit()
 
@@ -123,6 +126,7 @@ def finish():
             new_user_page = UserPage(userId=currUser.id, userName=currUser.name, userTags=i)
             db.session.add(new_user_page)
             db.session.commit()
+        currUser.mainTag = tagName[len(tagName) - 1]
         return render_template("final_page.html", userName=currUser.name, tags=tagName)
     else:
         return redirect(url_for('login'))

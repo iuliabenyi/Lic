@@ -10,17 +10,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id="title" class="d-flex justify-content-center">Conclusions</div>
+
+<nav id="navBar" class="navbar navbar-expand-lg">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <form action='/' btnLogoutmethod='GET'>
+            <input class="btn btn-primary" type="submit" id="btnHome" name="btnHome" value="Home">
+        </form>
+      </li>
+      <li class="nav-item">
+        <form action='logout' btnLogoutmethod='GET'>
+            <input class="btn btn-primary" type="submit" id="btnLogout" name="btnLogout" value="Log out">
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <div id="title" class="d-flex justify-content-center">Conclusions</div>
     <div id="userName" class="d-flex justify-content-center">{{userName}}</div>
 
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row">
-            <div class="container-fluid d-flex justify-content-center">
+            <div id="page-content2" class="container-fluid d-flex justify-content-center">
                 <div class="col-sm-8 col-md-6">
                     <div class="card">
                         <div class="card-body" style="height:
-                        320px">
+                        350px">
                             <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
                                 <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
                                     <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
@@ -37,24 +55,25 @@
     </div>
 </div>
 
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center" id="suicidalDiv">
     <div id="suicidalTag"></div>
     <div class="b4-test">
       <progress id="suicidalProgress" class="progress" max="100"></progress>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center" id="anxietyDiv">
       <div id="anxietyTag"></div>
     <div class="b4-test">
       <progress id="anxietyProgress" class="progress" max="100"></progress>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center" id="panicDiv">
       <div id="panicTag"></div>
     <div class="b4-test">
       <progress id="panicProgress" class="progress" max="100"></progress>
     </div>
   </div>
+
 
 
 
@@ -149,7 +168,7 @@
 
 
     document.getElementById("suicidalTag").innerText = "Suicidal";
-    document.getElementById("suicidalProgress").value = suicidalN * 10;
+    document.getElementById("suicidalProgress").value = suicidalN * 100;
     if(suicidalN >= 5 && suicidalN < 7.5)
         document.getElementById('suicidalProgress').style.backgroundColor = 'yellow';
     if(suicidalN >= 7.5)
