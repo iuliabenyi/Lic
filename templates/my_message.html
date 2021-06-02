@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/myMessage.css') }}">
+</head>
+<body>
+
+<div id="title" class="d-flex justify-content-center">{{userName}}'s Messages</div>
+<!--<div id="table" class="d-flex justify-content-center">{{ table }}</div>-->
+<div id="slideContainer"></div>
+
+<script>
+
+    //var results = ["slide 1", "slide 2", "slide 3", "slide 4", "slide 5"]
+    var resultsRawMes = '{{resultsMes}}'
+    var resultsRawTh = '{{resultsTh}}'
+
+    var resultsMes = resultsRawMes.split(/&#39;|&#39;, |, | [ |]/)
+    console.log(resultsMes)
+    var str = '<ul style="list-style-type: none;">'
+
+    resultsMes.forEach(function(slide) {
+        if(slide !== "" && slide !== "[" && slide !== "]")
+            str += '<li style="' +
+                'background-color: #fca4e2;' +
+                'padding: 15px;' +
+                'margin-bottom: 20px;' +
+                'font-size: 25px;' +
+                'width: fit-content;' +
+                'border-radius: 15px 15px 15px 0px;">'+ slide + '</li>';
+    });
+
+    str += '</ul>';
+    document.getElementById("slideContainer").innerHTML = str;
+
+</script>
+
+</body>
+</html>

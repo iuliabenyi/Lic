@@ -184,6 +184,15 @@ body {
   transition: background 0.23s;
 }
 
+#btnMessages {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  background-color: #c86071;
+  color: white;
+}
+
 #navBar {
   max-height: 50px;
 }

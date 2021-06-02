@@ -3,8 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Message</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/messagePage.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
 </head>
 <body>
-  <div>Hello, {{therName}}! Send a message to {{userName}}</div>
+    <nav id="navBar" class="navbar navbar-expand-lg">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <form action='/' method='GET'>
+                    <input class="btn btn-primary" id="btnHome" type="submit" name="btnHome" value="Home">
+                </form>
+            </li>
+            <li class="nav-item">
+                <form action='logout' method='GET'>
+                    <input class="btn btn-primary" id="btnLogout" type="submit" name="btnLogout" value="Log out">
+                </form>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
+    <form action='message' method='POST'>
+      <div id="title">Hello, {{therName}}! Send a message to {{userName}}</div>
+
+      <div class="field">
+          <div id="writeMessage">
+              <input class="input is-large" type="text" name="message" placeholder="Write the message" autofocus="">
+          </div>
+      </div>
+
+      <div>
+          <input onclick="clickAlert()" class="btn btn-primary" id="sendBtn" type='submit' name="sendButton" value='Send'/>
+      </div>
+
+    </form>
+
+<script>
+  function clickAlert() {
+    alert("Message sent succesfully!");
+}
+</script>
+
+
 </body>
 </html>

@@ -29,6 +29,7 @@ body {
 
  #pageBtn {
      font-weight: bold;
+     margin-top: 40px;
   margin: 10px;
   font-weight: bold;
   background-color: #c86071;
@@ -38,6 +39,35 @@ body {
  }
 
  #messageBtn {
+     font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+ }
+
+ #therName {
+     font-size: 50px;
+ }
+
+ #table {
+     margin: 30px;
+     margin-top: 50px;
+ }
+
+ #btnHome {
+     font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #c86071;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+ }
+
+ #btnLogout {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;

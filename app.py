@@ -1,22 +1,19 @@
 import flask
 from flask import render_template, redirect, url_for, flash
-from flask_table import Col
-from models import UserPage, Users
-from nltk_utils import stem
-from usersPageTable import usersPageTable
+from messagesTable import messagesTable
+from models import UserPage, Users, Messages
 from usersTable import usersTable
 from werkzeug.security import generate_password_hash, check_password_hash
-from login import *
 from chat import *
 
 isLoggedIn = False
-#currUser = User()
 currUser = Users()
 currUserPage = UserPage()
 bot_response = ""
 tagName = []
 inputUserName = ""
 currMainTag = ""
+message = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
@@ -70,7 +67,32 @@ def therapist():
         if request.form['button'] == 'See their page':
             return redirect(url_for('temporary'))
         if request.form['button'] == 'Send a message':
-            return render_template("message_page.html", therName=currUser.name, userName=inputUserName)
+            return redirect(url_for('message'))
+
+@app.route('/message', methods=['GET', 'POST'])
+def message():
+    global message
+    if flask.request.method == 'GET':
+        return render_template("message_page.html", therName=currUser.name, userName=inputUserName)
+    if flask.request.method == 'POST':
+        message = request.form.get('message')
+        new_message = Messages(nameUser=inputUserName, nameTherapist=currUser.name, message=message)
+        db.session.add(new_message)
+        db.session.commit()
+        return redirect(url_for('homePage'))
+
+@app.route('/myMessages', methods=['GET', 'POST'])
+def myMessages():
+    results = Messages.query.filter_by(nameUser=currUser.name).all()
+    resultsMes = []
+    resultsTh = []
+    for r in results:
+        resultsMes.append(r.message)
+        resultsTh.append(r.nameTherapist)
+
+    table = messagesTable(results)
+    table.border = True
+    return render_template("my_message.html", userName=currUser.name, table=table, resultsMes=resultsMes, resultsTh=resultsTh)
 
 @app.route('/temporary', methods=['GET', 'POST'])
 def temporary():
