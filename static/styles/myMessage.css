@@ -31,3 +31,12 @@
      font-size: 50px;
      text-align-last: center;
  }
+
+ .msg-text {
+     background-color: #fca4e2;
+     padding: 15px;
+     margin-bottom: 20px;
+     font-size: 25px;
+     width: fit-content;
+     border-radius: 15px 15px 0px 15px;
+ }

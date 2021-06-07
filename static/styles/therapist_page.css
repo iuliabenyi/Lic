@@ -27,18 +27,7 @@ body {
   color: white;
 }
 
- #pageBtn {
-     font-weight: bold;
-     margin-top: 40px;
-  margin: 10px;
-  font-weight: bold;
-  background-color: #c86071;
-  color: white;
-  cursor: pointer;
-  transition: background 0.23s;
- }
-
- #messageBtn {
+  #detailsBtn {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;

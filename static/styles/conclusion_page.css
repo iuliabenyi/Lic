@@ -76,7 +76,7 @@
 }
 
  #title {
-     font-size: 50px;
+     font-size: 40px;
  }
 
  #userName {
@@ -103,7 +103,7 @@
 }
 
  #page-content {
-     margin-left: -450px;
+     margin-left: -760px;
      margin-top: -50px;
  }
 
@@ -112,29 +112,69 @@
  }
 
  #suicidalDiv {
-     margin-left: 890px;
+     margin-left: 590px;
      margin-right: 20px;
-     margin-top: -433px;
+     margin-top: -428px;
+     border: 1px solid grey;
+     padding: 25px;
+     background-color: white;
+     max-width: 400px;
+     margin-bottom: 20px;
  }
 
  #anxietyDiv {
-     margin-left: 890px;
+     margin-left: 590px;
      margin-right: 20px;
+     border: 1px solid grey;
+     padding: 25px;
+     background-color: white;
+     max-width: 400px;
+     margin-bottom: 20px;
  }
 
  #panicDiv {
-     margin-left: 890px;
+     margin-left: 590px;
      margin-right: 20px;
+     border: 1px solid grey;
+     padding: 25px;
+     background-color: white;
+     max-width: 400px;
  }
 
- #suicidalProgress {
+ #suicidalN {
      margin-top: 30px;
+     margin-left: 90px;
+     font-size: 20px;
  }
 
- #anxietyProgress {
+ #anxietyN{
      margin-top: 30px;
+     margin-left: 182px;
+     font-size: 20px;
  }
 
- #panicProgress {
+ #panicN {
      margin-top: 30px;
+     margin-left: 200px;
+     font-size: 20px;
  }
+
+ #chart-line {
+     margin-top: 55px;
+     margin-left: -5px;
+     width: 580px;
+     height: auto;
+ }
+
+ #suicidalTag {
+     font-size: 22px;
+ }
+
+  #anxietyTag {
+     font-size: 22px;
+ }
+
+   #panicTag {
+     font-size: 22px;
+ }
+

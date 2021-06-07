@@ -2,42 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Messages</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/myMessage.css') }}">
+    <title>Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/usersDetails.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+  <div id="title">{{userName}}'s details</div>
+  <div>Main tag: {{mainTag}}</div>
+  <div>Last login: {{lastLogin}}</div>
+  <form method="POST">
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary" id="pageBtn" type='submit' name = "button" value='See their page'/>
+    </div>
 
-<div id="title" class="d-flex justify-content-center">{{userName}}'s Messages</div>
-<!--<div id="table" class="d-flex justify-content-center">{{ table }}</div>-->
-<div id="slideContainer"></div>
+      <div id="slideContainer"></div>
 
-<form class="msger-inputarea" action="myMessages" method='POST'>
-    <input type="text" name="sendTo" class="msger-input" id="sendToInput" placeholder="Send to">
-  <input type="text" name="mesText" class="msger-input" id="textInput" placeholder="Enter your message">
-  <button type="submit" onclick="clickAlert()" class="msger-send-btn">Send</button>
-</form>
+      <div class="field">
+          <div id="writeMessage">
+              <input class="input is-large" type="text" name="message" placeholder="Write the message" autofocus="">
+          </div>
+      </div>
 
+      <div>
+          <input onclick="clickAlert()" class="btn btn-primary" id="sendBtn" type='submit' name="button" value='Send'/>
+      </div>
+  </form>
 <script>
+    function clickAlert() {
+    alert("Message sent succesfully!");
+    }
 
-    //var results = ["slide 1", "slide 2", "slide 3", "slide 4", "slide 5"]
     var resultsRawMes = '{{resultsMes}}'
-    var resultsRawTh = '{{resultsTh}}'
+    var resultsRawUser = '{{resultsUser}}'
     var resultsSendRawMes = '{{resultsSendMes}}'
-    var resultsSendRawTh = '{{resultsSendTh}}'
+    var resultsSendRawUser = '{{resultsSendUser}}'
     const msgerForm = get(".msger-inputarea");
     const msgerInput = get(".msger-input");
     const msgerChat = get("#slideContainer");
 
     var resultsMes = resultsRawMes.split(/&#39;|&#39;, |, | [ |]/);
-    var resultsTh = resultsRawTh.split(/&#39;|&#39;, |, | [ |]/);
+    var resultsUser = resultsRawUser.split(/&#39;|&#39;, |, | [ |]/);
     var resultsSendMes = resultsSendRawMes.split(/&#39;|&#39;, |, | [ |]/);
-    var resultsSendTh = resultsSendRawTh.split(/&#39;|&#39;, |, | [ |]/);
+    var resultsSendUser = resultsSendRawUser.split(/&#39;|&#39;, |, | [ |]/);
+    console.log(resultsMes)
     var str = '<ul style="list-style-type: none;">'
 
     resultsMes.forEach(function(slide, index) {
-        const ther = resultsTh[index];
+        const user = resultsUser[index];
+        const sendUser = resultsSendUser[index];
         const sendMes = resultsSendMes[index];
+        console.log(slide)
         if((slide !== "" && slide !== "[" && slide !== "]") && (sendMes !== "" && sendMes !== "[" && sendMes !== "]"))
             str += '<li style="' +
                 'background-color: #fca4e2;' +
@@ -46,7 +61,7 @@
                 'font-size: 25px;' +
                 'width: fit-content;' +
                 'border-radius: 15px 15px 15px 0px;">' +
-                '<div id="therSender">' + ther + '</div>' + slide + '</li>' +
+                slide + '</li>' +
                 '<li style="' +
                 'background-color: #fca4e2;' +
                 'padding: 15px;' +
@@ -100,11 +115,6 @@ $.ajax({
 
 });
 
-function clickAlert() {
-    alert("Message sent succesfully!");
-    }
-
 </script>
-
 </body>
 </html>

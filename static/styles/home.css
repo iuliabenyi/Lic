@@ -22,7 +22,7 @@ body {
 #description {
     font-size: 20px;
     text-align: -webkit-center;
-    margin-top: 100px;
+    margin-top: 65px;
 }
 
 #btnLogin {
@@ -34,6 +34,12 @@ body {
     /*margin-right: 10px;*/
     margin-left: 20px;
     background-color: #c86071;
+}
+
+#btnFree {
+    background-color: transparent;
+    color: black;
+    margin-top: 35px;
 }
 
 

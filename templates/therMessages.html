@@ -15,30 +15,24 @@
 <form class="msger-inputarea" action="myMessages" method='POST'>
     <input type="text" name="sendTo" class="msger-input" id="sendToInput" placeholder="Send to">
   <input type="text" name="mesText" class="msger-input" id="textInput" placeholder="Enter your message">
-  <button type="submit" onclick="clickAlert()" class="msger-send-btn">Send</button>
+  <button type="submit" class="msger-send-btn">Send</button>
 </form>
 
 <script>
-
-    //var results = ["slide 1", "slide 2", "slide 3", "slide 4", "slide 5"]
     var resultsRawMes = '{{resultsMes}}'
-    var resultsRawTh = '{{resultsTh}}'
-    var resultsSendRawMes = '{{resultsSendMes}}'
-    var resultsSendRawTh = '{{resultsSendTh}}'
+    var resultsRawUser = '{{resultsUser}}'
     const msgerForm = get(".msger-inputarea");
     const msgerInput = get(".msger-input");
     const msgerChat = get("#slideContainer");
 
     var resultsMes = resultsRawMes.split(/&#39;|&#39;, |, | [ |]/);
-    var resultsTh = resultsRawTh.split(/&#39;|&#39;, |, | [ |]/);
-    var resultsSendMes = resultsSendRawMes.split(/&#39;|&#39;, |, | [ |]/);
-    var resultsSendTh = resultsSendRawTh.split(/&#39;|&#39;, |, | [ |]/);
+    var resultsUser = resultsRawUser.split(/&#39;|&#39;, |, | [ |]/);
+    console.log(resultsMes)
     var str = '<ul style="list-style-type: none;">'
 
     resultsMes.forEach(function(slide, index) {
-        const ther = resultsTh[index];
-        const sendMes = resultsSendMes[index];
-        if((slide !== "" && slide !== "[" && slide !== "]") && (sendMes !== "" && sendMes !== "[" && sendMes !== "]"))
+        const user = resultsUser[index];
+        if(slide !== "" && slide !== "[" && slide !== "]")
             str += '<li style="' +
                 'background-color: #fca4e2;' +
                 'padding: 15px;' +
@@ -46,15 +40,7 @@
                 'font-size: 25px;' +
                 'width: fit-content;' +
                 'border-radius: 15px 15px 15px 0px;">' +
-                '<div id="therSender">' + ther + '</div>' + slide + '</li>' +
-                '<li style="' +
-                'background-color: #fca4e2;' +
-                'padding: 15px;' +
-                'margin-bottom: 20px;' +
-                'font-size: 25px;' +
-                'width: fit-content;' +
-                'border-radius: 15px 15px 0px 15px;">' +
-                sendMes + '</li>';
+                '<div id="therSender">' + user + '</div>' + slide + '</li>';
     });
 
     str += '</ul>';
@@ -99,10 +85,6 @@ $.ajax({
   }
 
 });
-
-function clickAlert() {
-    alert("Message sent succesfully!");
-    }
 
 </script>
 

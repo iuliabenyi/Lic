@@ -28,17 +28,16 @@
   </div>
 </nav>
 
-    <div id="title" class="d-flex justify-content-center">Conclusions</div>
-    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>
+    <div id="title" class="d-flex justify-content-center">Dominant feelings</div>
+<!--    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>-->
 
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row">
             <div id="page-content2" class="container-fluid d-flex justify-content-center">
-                <div class="col-sm-8 col-md-6">
+                <div class="col-sm-8 col-md-3">
                     <div class="card">
-                        <div class="card-body" style="height:
-                        350px">
+                        <div class="card-body" style="height: 380px;">
                             <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
                                 <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
                                     <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
@@ -46,7 +45,7 @@
                                 <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
                                     <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
                                 </div>
-                            </div> <canvas id="chart-line" width="299" height="120" class="chartjs-render-monitor" style="display: block; width: 299px; height: 120px;"></canvas>
+                            </div> <canvas id="chart-line" class="chartjs-render-monitor" style="display: block;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -55,23 +54,26 @@
     </div>
 </div>
 
-  <div class="d-flex justify-content-center" id="suicidalDiv">
+  <div class="d-flex" id="suicidalDiv">
     <div id="suicidalTag"></div>
-    <div class="b4-test">
-      <progress id="suicidalProgress" class="progress" max="100"></progress>
-    </div>
+<!--    <div class="b4-test">-->
+<!--      <progress id="suicidalProgress" class="progress" max="100"></progress>-->
+<!--    </div>-->
+      <div id="suicidalN"></div>
   </div>
-  <div class="d-flex justify-content-center" id="anxietyDiv">
+  <div class="d-flex" id="anxietyDiv">
       <div id="anxietyTag"></div>
-    <div class="b4-test">
-      <progress id="anxietyProgress" class="progress" max="100"></progress>
-    </div>
+<!--    <div class="b4-test">-->
+<!--      <progress id="anxietyProgress" class="progress" max="100"></progress>-->
+<!--    </div>-->
+      <div id="anxietyN"></div>
   </div>
-  <div class="d-flex justify-content-center" id="panicDiv">
+  <div class="d-flex" id="panicDiv">
       <div id="panicTag"></div>
-    <div class="b4-test">
-      <progress id="panicProgress" class="progress" max="100"></progress>
-    </div>
+<!--    <div class="b4-test">-->
+<!--      <progress id="panicProgress" class="progress" max="100"></progress>-->
+<!--    </div>-->
+      <div id="panicN"></div>
   </div>
 
 
@@ -165,19 +167,21 @@
 
     }
     console.log(suicidalN, anxietyN, panicN);
+    console.log('{{userType}}')
+    if('{{userType}}' === "therapist")
+        document.getElementById("suicidalTag").innerText = "Suicidal Behavior Score";
+    if('{{userType}}' === "user")
+        document.getElementById("suicidalTag").innerText = "Red Zone";
 
+    // document.getElementById("suicidalProgress").value = suicidalN * 100;
 
-    document.getElementById("suicidalTag").innerText = "Suicidal";
-    document.getElementById("suicidalProgress").value = suicidalN * 100;
-    if(suicidalN >= 5 && suicidalN < 7.5)
-        document.getElementById('suicidalProgress').style.backgroundColor = 'yellow';
-    if(suicidalN >= 7.5)
-        $('#suicidalProgress').addClass("red");
-
-    document.getElementById("anxietyTag").innerText = "Anxiety";
-    document.getElementById("anxietyProgress").value = anxietyN * 10;
-    document.getElementById("panicTag").innerText = "Panic";
-    document.getElementById("panicProgress").value = panicN * 10;
+    document.getElementById("anxietyTag").innerText = "Anxiety Score";
+    // document.getElementById("anxietyProgress").value = anxietyN * 10;
+    document.getElementById("panicTag").innerText = "Panic Score";
+    // document.getElementById("panicProgress").value = panicN * 10;
+    document.getElementById("suicidalN").innerText = suicidalN;
+    document.getElementById("anxietyN").innerText = anxietyN;
+    document.getElementById("panicN").innerText = panicN;
 
 
 
