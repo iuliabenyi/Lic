@@ -43,3 +43,9 @@ class Message(db.Model):
     nameReceiver = db.Column(db.String(1000))
     nameSender = db.Column(db.String(1000))
     message = db.Column(db.String(5000))
+
+class Notifications(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # primary keys are required by SQLAlchemy
+    nameReceiver = db.Column(db.String(1000))
+    nameSender = db.Column(db.String(1000))
+    notification = db.Column(db.Boolean)

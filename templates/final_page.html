@@ -8,6 +8,9 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -21,7 +24,7 @@
       </li>
       <li class="nav-item">
         <form action='logout' btnLogoutmethod='GET'>
-            <input class="btn btn-primary" type="submit" id="btnLogout" name="btnLogout" value="Log out">
+            <input class="btn btn-primary" type="submit" id="btnLogout" name="button" value="Log out">
         </form>
       </li>
     </ul>
@@ -30,6 +33,18 @@
 
     <div id="title" class="d-flex justify-content-center">Dominant feelings</div>
 <!--    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>-->
+<form id="myform" method="post">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="dropdownList">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Live reviews</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Overview</a></li>
+        </ul>
+      </div>
+</form>
+<input class="btn btn-primary" type="submit" id="btnLive" name="button" value="Live reviews">
+<input class="btn btn-primary" type="submit" id="btnOverView" name="button" value="Overview">
 
 <div class="page-content page-container" id="page-content">
     <div class="padding">
@@ -76,6 +91,8 @@
       <div id="panicN"></div>
   </div>
 
+</div>
+
 
 
 
@@ -86,18 +103,29 @@
     //var tags = tagsHtml.split(/,| /);
     let tagsRaw = '{{tags}}';
     var tags = tagsRaw.split(/&#39;|,| /);
+    let tempTagsRaw = '{{tempTags}}';
+    var tempTags = tagsRaw.split(/&#39;|,| /);
+    console.log(tags);
+    $('#dropdownList li').on('click', function(){
+        console.log($(this).text());
+        if($(this).text() === "Live reviews")
+            tags = tempTags;
+        else
+            tags = tagsRaw.split(/&#39;|,| /);
+    });
     console.log(tags);
 
-    console.log(tags);
     let unique = [...new Set(tags)];
     let duplicates = unique.map(value => [value, tags.filter(str => str === value).length]);
     console.log(duplicates);
     duplicates.sort((a, b) => a[1].toString().localeCompare(b[1]));
     console.log(duplicates);
 
-    var top1 = "",top2 = "",top3 = "", nTop1 = 0, nTop2 = 0, nTop3 = 0;
+    var top1 = null,top2 = null, top3 = null, top4 = null, top5 = null, top6 = null, top7 = null/*, top8 = null, top9 = null, top10 = null*/;
+    var nTop1 = 0, nTop2 = 0, nTop3 = 0, nTop4 = 0, nTop5 = 0, nTop6 = 0, nTop7 = 0/*, nTop8 = 0, nTop9 = 0, nTop10 = 0*/;
     for(let i = duplicates.length - 1; i >=0; i--) {
-        if(top1 === "")
+
+        if(top1 === null)
             if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
                 if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
                     {
@@ -105,7 +133,7 @@
                         nTop1 = duplicates[i][1];
                         i--;
                     }
-        if(top2 === "")
+        if(top2 === null)
             if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
                 if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
                     {
@@ -113,12 +141,28 @@
                         nTop2 = duplicates[i][1];
                         i--;
                     }
-        if(top3 === "")
+        if(top3 === null)
             if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
                 if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
                     {
                         top3 = duplicates[i][0];
                         nTop3 = duplicates[i][1];
+                        i--;
+                    }
+        if(top4 === null)
+            if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
+                if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
+                    {
+                        top4 = duplicates[i][0];
+                        nTop4 = duplicates[i][1];
+                        i--;
+                    }
+        if(top5 === null)
+            if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
+                if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
+                    {
+                        top5 = duplicates[i][0];
+                        nTop5 = duplicates[i][1];
                         i--;
                     }
     }
@@ -135,18 +179,14 @@
     if(top3 === "Substance")
         top3 = "Substance abuse";
 
-
-
-    console.log(top1, nTop1, top2, nTop2, top3, nTop3);
-
     $(document).ready(function() {
         var ctx = $("#chart-line");
         var myLineChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: [top1, top2, top3],
+                labels: [top1, top2, top3, top4, top5/*, top6, top7, top8, top9, top10*/],
                 datasets: [{
-                    data: [nTop1, nTop2, nTop3],
+                    data: [nTop1, nTop2, nTop3, nTop4, nTop5/*, nTop6, nTop7, nTop8, nTop9, nTop10*/],
                     backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]
                 }]
             },
@@ -170,7 +210,8 @@
     console.log('{{userType}}')
     if('{{userType}}' === "therapist")
         document.getElementById("suicidalTag").innerText = "Suicidal Behavior Score";
-    if('{{userType}}' === "user")
+    //if('{{userType}}' === "user")
+    else
         document.getElementById("suicidalTag").innerText = "Red Zone";
 
     // document.getElementById("suicidalProgress").value = suicidalN * 100;
@@ -182,6 +223,7 @@
     document.getElementById("suicidalN").innerText = suicidalN;
     document.getElementById("anxietyN").innerText = anxietyN;
     document.getElementById("panicN").innerText = panicN;
+
 
 
 

@@ -3,7 +3,7 @@ from datetime import datetime
 import flask
 from flask import render_template, redirect, url_for, flash
 from messagesTable import messagesTable
-from models import UserPage, Users, Messages, UsersAll, Message
+from models import UserPage, Users, Messages, UsersAll, Message, Notifications
 from sqlalchemy import update
 from usersTable import usersTable
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -75,6 +75,7 @@ def usersDetails():
     resultsSendUserLast = []
     results = Message.query.filter_by(nameReceiver=currUser.name).all()
     resultsSend = Message.query.filter_by(nameSender=currUser.name, nameReceiver=inputUserName)
+    hasNotif = False
     for r in results:
         resultsMes.append(r.message)
         resultsUser.append(r.nameSender)
@@ -104,7 +105,21 @@ def usersDetails():
             userTags.append(u.userTags)
         tagsDict = {i: userTags.count(i) for i in userTags}
         sortedTagsDict = sorted(tagsDict.items(), key=lambda x: x[1], reverse=True)
-        return render_template("usersDetails.html", userName=user.name, mainTag=sortedTagsDict[0][0], lastLogin=user.lastLogin, resultsMes=resultsMesLast, resultsUser=resultsUserLast, resultsSendMes=resultsSendMesLast, resultsSendUser=resultsSendUserLast)
+
+        notif = Notifications.query.filter_by(nameReceiver=currUser.name, nameSender=user.name).first()
+        if notif.notification == True:
+            print("New notification")
+            hasNotif = True
+        else:
+            hasNotif=False
+            print("No new notifications")
+        stmt = (
+            update(Notifications).
+                where(Notifications.nameReceiver == currUser.name and Notifications.nameSender == user.name).
+                values(notification=not notif.notification)
+        )   #here the update doesn't work?
+
+        return render_template("usersDetails.html", userName=user.name, mainTag=sortedTagsDict[0][0], lastLogin=user.lastLogin, resultsMes=resultsMesLast, resultsUser=resultsUserLast, resultsSendMes=resultsSendMesLast, resultsSendUser=resultsSendUserLast, hasNotif=hasNotif)
     if flask.request.method == 'POST':
         if request.form['button'] == "Send":
             message = request.form.get('message')
@@ -147,6 +162,20 @@ def myMessages():
         new_message = Message(nameReceiver=sendTo, nameSender=currUser.name, message=userInput)
         db.session.add(new_message)
         db.session.commit()
+
+        notif = Notifications.query.filter_by(nameReceiver=sendTo, nameSender=currUser.name).first()
+        if(not notif):
+            print("Not notif")
+            new_notif = Notifications(nameReceiver=sendTo, nameSender=currUser.name, notification=False)
+            db.session.add(new_notif)
+            db.session.commit()
+        else:
+            stmt = (
+                update(Notifications).
+                    where(Notifications.nameReceiver == sendTo and Notifications.nameSender == currUser.name).
+                    values(notification=True)
+            )
+
     results = Message.query.filter_by(nameReceiver=currUser.name).all()
     resultsSend = Message.query.filter_by(nameSender=currUser.name, nameReceiver=sendTo)
     for r in results:
@@ -209,7 +238,9 @@ def protected():
 @app.route('/logout')
 def logout():
     global isLoggedIn
+    global currUser
     isLoggedIn = False
+    currUser = User(name="FreeUser")
     return redirect(url_for('login'))
 
 
@@ -232,30 +263,45 @@ def signup_post():
         db.session.commit()
         return redirect(url_for('login'))
 
+@app.route('/finishLive')
+def finishLive():
+    print(tagName)
+    return render_template("final_page.html", userName=currUser.name, tags=tagName, tempTags=tagName, userType=currUser.type)
 
 @app.route('/finish')
 def finish():
-    if flask.request.method == 'GET':
-        for i in tagName:
-            new_user_page = UserPage(userId=currUser.id, userName=currUser.name, userTags=i)
-            db.session.add(new_user_page)
-            db.session.commit()
 
+    for i in tagName:
+        new_user_page = UserPage(userId=currUser.id, userName=currUser.name, userTags=i)
+        db.session.add(new_user_page)
+        db.session.commit()
+    userTags = []
+    if currUser != None:
         userTagsTable = UserPage.query.filter_by(userName=currUser.name).all()
-        userTags = []
+
         for u in userTagsTable:
             userTags.append(u.userTags)
-        print(userTags[len(userTags) - 1])
-        user = UsersAll.query.filter_by(name=currUser.name).first()
+    else:
+        print("It s none")
+        userTags = tagName
+    #print(userTags[len(userTags) - 1])
+    user = UsersAll.query.filter_by(name=currUser.name).first()
+    if user != None:
         stmt = (
             update(UsersAll).
                 where(UsersAll.name == user.name).
                 values(mainTag=userTags[len(userTags) - 1])
         )
         print("====== " + currUser.mainTag + " =======")
-        return render_template("final_page.html", userName=currUser.name, tags=userTags, userType=currUser.type)
-    else:
-        return redirect(url_for('login'))
+    if flask.request.method == 'GET':
+        return render_template("final_page.html", userName=currUser.name, tags=userTags, tempTags=tagName, userType=currUser.type)
+    if flask.request.method == "POST":
+        if request.form['button'] == "Log out":
+            return redirect(url_for('login'))
+        # if request.form['button'] == "Live review":
+        #     render_template("final_page.html", userName=currUser.name, tags=tagName, tempTags=tagName, userType=currUser.type)
+        # if request.form['button'] == "Overview":
+        #     render_template("final_page.html", userName=currUser.name, tags=userTags, tempTags=tagName, userType=currUser.type)
 
 @app.route('/tags')
 def tags():
@@ -275,7 +321,7 @@ def tags():
 @app.route('/chat')
 def chat():
     user = UsersAll.query.filter_by(name=currUser.name).first()
-    print(user.lastLogin + " ---------")
+    #print(user.lastLogin + " ---------")
     return render_template("index.html")
 
 @app.route("/userName")
