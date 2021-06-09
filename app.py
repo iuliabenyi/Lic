@@ -79,8 +79,8 @@ def usersDetails():
     for r in results:
         resultsMes.append(r.message)
         resultsUser.append(r.nameSender)
-    if len(resultsMes) > 3:
-        for i in range(1, 3):
+    if len(resultsMes) > 2:
+        for i in range(1, 2):
             resultsMesLast.append(resultsMes[len(resultsMes) - i])
             resultsUserLast.append(resultsUser[len(resultsUser) - i])
     else:
@@ -90,8 +90,8 @@ def usersDetails():
     for r in resultsSend:
         resultsSendMes.append(r.message)
         resultsSendUser.append(r.nameSender)
-    if len(resultsSendMes) > 3:
-        for i in range(1, 3):
+    if len(resultsSendMes) > 2:
+        for i in range(1, 2):
             resultsSendMesLast.append(resultsSendMes[len(resultsSendMes) - i])
             resultsSendUserLast.append(resultsSendUser[len(resultsSendUser) - i])
     else:
@@ -175,15 +175,16 @@ def myMessages():
                     where(Notifications.nameReceiver == sendTo and Notifications.nameSender == currUser.name).
                     values(notification=True)
             )
-
+    print(sendTo)
     results = Message.query.filter_by(nameReceiver=currUser.name).all()
-    resultsSend = Message.query.filter_by(nameSender=currUser.name, nameReceiver=sendTo)
+    resultsSend = Message.query.filter_by(nameSender=currUser.name).all()
+    print(resultsSend)
     for r in results:
         resultsMes.append(r.message)
         resultsTh.append(r.nameSender)
 
-    if len(resultsMes) > 3:
-        for i in range(1, 3):
+    if len(resultsMes) > 2:
+        for i in range(1, 2):
             resultsMesLast.append(resultsMes[len(resultsMes) - i])
             resultsThLast.append(resultsTh[len(resultsTh) - i])
     else:
@@ -193,8 +194,8 @@ def myMessages():
     for r in resultsSend:
         resultsSendMes.append(r.message)
         resultsSendTh.append(r.nameSender)
-    if len(resultsSendMes) > 3:
-        for i in range(1, 3):
+    if len(resultsSendMes) > 2:
+        for i in range(1, 2):
             resultsSendMesLast.append(resultsSendMes[len(resultsSendMes) - i])
             resultsSendThLast.append(resultsSendTh[len(resultsSendTh) - i])
     else:
@@ -213,6 +214,8 @@ def therMessages():
     for r in results:
         resultsMes.append(r.message)
         resultsUser.append(r.nameSender)
+        print(resultsMes)
+
     table = messagesTable(results)
     table.border = True
     return render_template("therMessages.html", userName=currUser.name, table=table, resultsMes=resultsMes, resultsUser=resultsUser)

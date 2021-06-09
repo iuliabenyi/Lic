@@ -33,18 +33,6 @@
 
     <div id="title" class="d-flex justify-content-center">Dominant feelings</div>
 <!--    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>-->
-<form id="myform" method="post">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="dropdownList">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Live reviews</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Overview</a></li>
-        </ul>
-      </div>
-</form>
-<input class="btn btn-primary" type="submit" id="btnLive" name="button" value="Live reviews">
-<input class="btn btn-primary" type="submit" id="btnOverView" name="button" value="Overview">
 
 <div class="page-content page-container" id="page-content">
     <div class="padding">
@@ -172,19 +160,31 @@
         top2 = "Low self esteem";
     if(top3 === "Low")
         top3 = "Low self esteem";
+    if(top4 === "Low")
+        top4 = "Low self esteem";
+    if(top5 === "Low")
+        top5 = "Low self esteem";
     if(top1 === "Substance")
         top1 = "Substance abuse";
     if(top2 === "Substance")
         top2 = "Substance abuse";
     if(top3 === "Substance")
         top3 = "Substance abuse";
+    if(top4 === "Substance")
+        top4 = "Substance abuse";
+    if(top5 === "Substance")
+        top5 = "Substance abuse";
 
     $(document).ready(function() {
         var ctx = $("#chart-line");
+        var labels = [top1, top2, top3, top4, top5/*, top6, top7, top8, top9, top10*/];
+        while(labels[labels.length-1] == null) {
+          labels.pop(); // remove tailing null
+        }
         var myLineChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: [top1, top2, top3, top4, top5/*, top6, top7, top8, top9, top10*/],
+                labels: labels,
                 datasets: [{
                     data: [nTop1, nTop2, nTop3, nTop4, nTop5/*, nTop6, nTop7, nTop8, nTop9, nTop10*/],
                     backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]

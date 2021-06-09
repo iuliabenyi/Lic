@@ -10,6 +10,7 @@
 
 <div id="title" class="d-flex justify-content-center">{{userName}}'s Messages</div>
 <!--<div id="table" class="d-flex justify-content-center">{{ table }}</div>-->
+<div class="d-flex justify-content-center">Last messages </div>
 <div id="slideContainer"></div>
 
 <form class="msger-inputarea" action="myMessages" method='POST'>
@@ -21,12 +22,14 @@
 <script>
     var resultsRawMes = '{{resultsMes}}'
     var resultsRawUser = '{{resultsUser}}'
+    var userName = '{{userName}}'
     const msgerForm = get(".msger-inputarea");
     const msgerInput = get(".msger-input");
     const msgerChat = get("#slideContainer");
 
     var resultsMes = resultsRawMes.split(/&#39;|&#39;, |, | [ |]/);
     var resultsUser = resultsRawUser.split(/&#39;|&#39;, |, | [ |]/);
+    console.log(resultsRawMes)
     console.log(resultsMes)
     var str = '<ul style="list-style-type: none;">'
 
