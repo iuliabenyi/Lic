@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from __init__ import *
 import flask
 from flask import render_template, redirect, url_for, flash
 from messagesTable import messagesTable
@@ -7,7 +7,14 @@ from models import UserPage, Users, Messages, UsersAll, Message, Notifications
 from sqlalchemy import update
 from usersTable import usersTable
 from werkzeug.security import generate_password_hash, check_password_hash
-from chat import *
+import random
+import json
+import torch
+from model import NeuralNet
+from nltk_utils import bag_of_words, tokenize
+from flask import render_template, request
+
+app = create_app()
 
 isLoggedIn = False
 currUser = UsersAll()
@@ -355,7 +362,7 @@ def get_bot_response():
                 tagName.append(tag)
 
     else:
-        bot_response = "I do not understand"
+        bot_response = "I don't think I understand, can you elaborate?"
     return bot_response
 
 
