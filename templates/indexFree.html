@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Suicide hotline chatbot</title>
+  <title>FYSTT</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
@@ -23,23 +23,8 @@
         </form>
       </li>
       <li class="nav-item">
-        <form action='logout' btnLogoutmethod='GET'>
-            <input class="btn btn-primary" type="submit" id="btnLogout" name="btnLogout" value="Log out">
-        </form>
-      </li>
-      <li class="nav-item">
-        <form action='finish' btnFinishmethod='GET'>
-            <input class="btn btn-primary" type="submit" id="btnFinish" name="btnFinish" value="Submit">
-        </form>
-      </li>
-      <li class="nav-item">
         <form action='finishLive' btnFinishmethod='GET'>
             <input class="btn btn-primary" type="submit" id="btnFinishLive" name="btnFinishLive" value="Submit Live">
-        </form>
-      </li>
-      <li class="nav-item">
-        <form action='myMessages' btnFinishmethod='GET'>
-            <input class="btn btn-primary" type="submit" id="btnMessages" name="btnMessages" value="See my messages">
         </form>
       </li>
     </ul>

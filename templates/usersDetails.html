@@ -8,15 +8,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id="title">{{userName}}'s details</div>
-  <div>Main tag: {{mainTag}}</div>
-  <div>Last login: {{lastLogin}}</div>
-  <div>Has notif: {{hasNotif}}</div>
-  <form method="POST">
+ <nav id="navBar" class="navbar navbar-expand-lg">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+                <div id="logo"></div>
+          </li>
+      <li class="nav-item">
+        <form action='/' btnLogoutmethod='GET'>
+            <input class="btn btn-primary" type="submit" id="btnHome" name="button" value="Home">
+        </form>
+      </li>
+      <li class="nav-item">
+        <form action='logout' btnLogoutmethod='GET'>
+            <input class="btn btn-primary" type="submit" id="btnLogout" name="button" value="Log out">
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form id="allPage" method="POST">
+    <div id="wrapper">
+    <div id="allText">
+      <div id="title" class="d-flex justify-content-center">{{userName}}'s details</div>
+      <div class="d-flex justify-content-center">Main tag: {{mainTag}}</div>
+      <div class="d-flex justify-content-center">Last login: {{lastLogin}}</div>
+<!--      <div class="d-flex justify-content-center">Has notif: {{hasNotif}}</div>-->
+
     <div class="d-flex justify-content-center">
         <input class="btn btn-primary" id="pageBtn" type='submit' name = "button" value='See their page'/>
     </div>
-
+    </div>
+    <div id="texting">
       <div id="slideContainer"></div>
 
       <div class="field">
@@ -28,6 +51,9 @@
       <div>
           <input onclick="clickAlert()" class="btn btn-primary" id="sendBtn" type='submit' name="button" value='Send'/>
       </div>
+        </div>
+
+    </div>
   </form>
 <script>
     function clickAlert() {
@@ -49,14 +75,18 @@
     console.log(resultsMes)
     var str = '<ul style="list-style-type: none;">'
 
+    console.log("aaaaa");
+
     resultsMes.forEach(function(slide, index) {
         const user = resultsUser[index];
         const sendUser = resultsSendUser[index];
-        const sendMes = resultsSendMes[index];
-        console.log(slide)
-        if((slide !== "" && slide !== "[" && slide !== "]") && (sendMes !== "" && sendMes !== "[" && sendMes !== "]"))
+        const sendMes = resultsSendMes[index]
+        console.log(slide);
+        console.log(sendMes);
+
+        if((slide !== undefined && slide !== "" && slide !== "[" && slide !== "]") && (sendMes !== undefined && sendMes !== "" && sendMes !== "[" && sendMes !== "]"))
             str += '<li style="' +
-                'background-color: #fca4e2;' +
+                'background-color: #579ffb;' +
                 'padding: 15px;' +
                 'margin-bottom: 20px;' +
                 'font-size: 25px;' +
@@ -64,8 +94,9 @@
                 'border-radius: 15px 15px 15px 0px;">' +
                 slide + '</li>' +
                 '<li style="' +
-                'background-color: #fca4e2;' +
+                'background-color: #579ffb;' +
                 'padding: 15px;' +
+                'margin-left: 240px;' +
                 'margin-bottom: 20px;' +
                 'font-size: 25px;' +
                 'width: fit-content;' +

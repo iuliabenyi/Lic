@@ -1,18 +1,28 @@
  body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     min-height: 657px;
 }
 
 #navBar {
-    background: #ffedf9;
+    background: transparent;
+}
+
+#logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
 }
 
 #btnHome {
   font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -23,7 +33,17 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
+  color: white;
+     margin-left: 900px;
+}
+
+ #sendBtn {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  background-color: #2f3e64;
   color: white;
 }
 
@@ -33,10 +53,19 @@
  }
 
  .msg-text {
-     background-color: #fca4e2;
+     background-color: #fff;
      padding: 15px;
      margin-bottom: 20px;
      font-size: 25px;
      width: fit-content;
      border-radius: 15px 15px 0px 15px;
+ }
+
+ #allMes {
+     margin-left: 120px;
+     margin-top: 50px;
+ }
+
+ #sendSec {
+     margin-left: 31px;
  }

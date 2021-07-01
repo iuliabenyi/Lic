@@ -1,5 +1,6 @@
 body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     min-height: 657px;
 }
@@ -33,6 +34,16 @@ body {
 
 #signup {
     margin-bottom: 20px;
-    background-color: #c86071;
+    background-color: #2f3e64;
     color: white;
+}
+
+#logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
+    margin-top: 8px;
 }

@@ -1,16 +1,111 @@
+
 body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    /*background: linear-gradient(#ffedf9, #ffe0f5);*/
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
-    min-height: 657px;
+    min-height: 640px;
+}
+
+#logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
 }
 
 #navBar {
-    background: #ffedf9;
+    background: transparent;
 }
 
 #title {
-    font-size: 50px;
+    font-size: 45px;
     /*color: white;*/
+}
+
+#fyst {
+    font-size: 35px;
+    width: 500px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 435px;
+}
+
+#welcome {
+    float:left;
+}
+
+#fystexpl {
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+#f {
+    font-size: 50px;
+    float:left;
+    margin-top: -28px;
+}
+
+#fextra {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 9px;
+}
+
+#y {
+    font-size: 50px;
+    float:left;
+    margin-top: -29px;
+}
+
+#yextra {
+    overflow: hidden;
+    font-size: 25px;
+    width: 135px;
+    margin-top: -18px;
+}
+
+#ybig {
+    width: 188px;
+    margin-top: 37px;
+}
+
+#s {
+    font-size: 50px;
+    float:left;
+    margin-top: -26px;
+}
+
+#sextra {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 14px;
+}
+
+#t {
+    font-size: 50px;
+    float:left;
+    margin-top: -28px;
+}
+
+#textra {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 21px;
+}
+
+#t2 {
+    font-size: 50px;
+    float:left;
+    margin-top: -27px;
+}
+
+#t2extra {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 17px;
 }
 
 #subtitle {
@@ -22,24 +117,22 @@ body {
 #description {
     font-size: 20px;
     text-align: -webkit-center;
-    margin-top: 65px;
 }
 
 #btnLogin {
-    margin-left: 1150px;
-    background-color: #c86071;
+    margin-left: 900px;
+    background-color: #2f3e64;
 }
 
 #btnSignup {
     /*margin-right: 10px;*/
     margin-left: 20px;
-    background-color: #c86071;
+    background-color: #2f3e64;
 }
 
 #btnFree {
     background-color: transparent;
     color: black;
-    margin-top: 35px;
 }
 
 

@@ -25,6 +25,7 @@ inputUserName = ""
 currMainTag = ""
 message = ""
 
+
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
     if flask.request.method == 'GET':
@@ -46,12 +47,13 @@ def login():
 
     isLoggedIn = True
     currUser = user
+    stmt = (
+        update(UsersAll).
+            where(UsersAll.name == currUser.name).
+            values(lastLogin=datetime.now().__str__())
+    )
     if currUser.type == "user":
-        stmt = (
-            update(UsersAll).
-                where(UsersAll.name == currUser.name).
-                values(lastLogin=datetime.now().__str__())
-        )
+
         return redirect(url_for('chat'))
     elif currUser.type == "therapist":
         return redirect(url_for('therapist'))
@@ -82,7 +84,7 @@ def usersDetails():
     resultsSendUserLast = []
     results = Message.query.filter_by(nameReceiver=currUser.name).all()
     resultsSend = Message.query.filter_by(nameSender=currUser.name, nameReceiver=inputUserName)
-    hasNotif = False
+    # hasNotif = False
     for r in results:
         resultsMes.append(r.message)
         resultsUser.append(r.nameSender)
@@ -112,21 +114,9 @@ def usersDetails():
             userTags.append(u.userTags)
         tagsDict = {i: userTags.count(i) for i in userTags}
         sortedTagsDict = sorted(tagsDict.items(), key=lambda x: x[1], reverse=True)
-
-        notif = Notifications.query.filter_by(nameReceiver=currUser.name, nameSender=user.name).first()
-        if notif.notification == True:
-            print("New notification")
-            hasNotif = True
-        else:
-            hasNotif=False
-            print("No new notifications")
-        stmt = (
-            update(Notifications).
-                where(Notifications.nameReceiver == currUser.name and Notifications.nameSender == user.name).
-                values(notification=not notif.notification)
-        )   #here the update doesn't work?
-
-        return render_template("usersDetails.html", userName=user.name, mainTag=sortedTagsDict[0][0], lastLogin=user.lastLogin, resultsMes=resultsMesLast, resultsUser=resultsUserLast, resultsSendMes=resultsSendMesLast, resultsSendUser=resultsSendUserLast, hasNotif=hasNotif)
+        print(user.name)
+        print(user.lastLogin)
+        return render_template("usersDetails.html", userName=user.name, mainTag=sortedTagsDict[0][0], lastLogin=user.lastLogin, resultsMes=resultsMesLast, resultsUser=resultsUserLast, resultsSendMes=resultsSendMesLast, resultsSendUser=resultsSendUserLast)
     if flask.request.method == 'POST':
         if request.form['button'] == "Send":
             message = request.form.get('message')
@@ -136,6 +126,10 @@ def usersDetails():
             return redirect(url_for('usersDetails'))
         if request.form['button'] == 'See their page':
             return redirect(url_for('temporary'))
+        if request.form['button'] == 'Home':
+            return redirect(url_for('homePage'))
+        if request.form['button'] == 'Log out':
+            return redirect(url_for('logout'))
 
 @app.route('/message', methods=['GET', 'POST'])
 def message():
@@ -170,18 +164,18 @@ def myMessages():
         db.session.add(new_message)
         db.session.commit()
 
-        notif = Notifications.query.filter_by(nameReceiver=sendTo, nameSender=currUser.name).first()
-        if(not notif):
-            print("Not notif")
-            new_notif = Notifications(nameReceiver=sendTo, nameSender=currUser.name, notification=False)
-            db.session.add(new_notif)
-            db.session.commit()
-        else:
-            stmt = (
-                update(Notifications).
-                    where(Notifications.nameReceiver == sendTo and Notifications.nameSender == currUser.name).
-                    values(notification=True)
-            )
+        # notif = Notifications.query.filter_by(nameReceiver=sendTo, nameSender=currUser.name).first()
+        # if(not notif):
+        #     print("Not notif")
+        #     new_notif = Notifications(nameReceiver=sendTo, nameSender=currUser.name, notification=False)
+        #     db.session.add(new_notif)
+        #     db.session.commit()
+        # else:
+        #     stmt = (
+        #         update(Notifications).
+        #             where(Notifications.nameReceiver == sendTo and Notifications.nameSender == currUser.name).
+        #             values(notification=True)
+        #     )
     print(sendTo)
     results = Message.query.filter_by(nameReceiver=currUser.name).all()
     resultsSend = Message.query.filter_by(nameSender=currUser.name).all()
@@ -331,8 +325,10 @@ def tags():
 @app.route('/chat')
 def chat():
     user = UsersAll.query.filter_by(name=currUser.name).first()
-    #print(user.lastLogin + " ---------")
-    return render_template("index.html")
+    if(currUser.name):
+        return render_template("index.html")
+    else:
+        return render_template("indexFree.html")
 
 @app.route("/userName")
 def get_user_name():

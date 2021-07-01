@@ -21,15 +21,18 @@
       "patterns": [
         "Thanks",
         "Thank you",
-        "Thank you very much"
+        "Thank you very much",
+        "I think I will try that, thank you",
+        "Ok, I will do that, thank you",
+        "I will try that later, thank you"
       ],
       "responses": [
-        "You are welcome, I am glad I could help!"
+        "You are welcome, I am glad I could help! Is there anything else you want to talk about?"
       ]
     },
     {
       "tag": "Goodbye ",
-      "patterns": ["Bye", "See you later", "Goodbye"],
+      "patterns": ["Bye", "See you later", "Goodbye", "No, that was all, goodbye!"],
       "responses": [
         "See you later, thanks for visiting",
         "Have a nice day",
@@ -121,7 +124,9 @@
         "there is a lot",
         "It's too much",
         "Some things happened",
-        "A few things happened"
+        "A few things happened",
+        "There is just so much going on",
+        "a lot of bad things happened"
       ],
       "responses": [
         "That's not a problem, go ahead and tell me about it",
@@ -137,7 +142,9 @@
         "I am depressed",
         "I feel numb",
         "I don't feel anything",
-        "I feel drained"
+        "I feel drained",
+        "I just feel so depressed",
+        "I feel so drained, I have no energy left and I don't want to do anything"
       ],
       "responses": [
         "Did this happen randomly?",
@@ -195,7 +202,9 @@
         "I've been abused",
         "I was assaulted",
         "I am being abused",
-        "I was abused"
+        "I was abused",
+        "Recently I was abused",
+        "well, yes, recently I was abused"
       ],
       "responses": [
         "Did this happen with your family, with a stranger or in your relationship?",
@@ -241,6 +250,7 @@
         "My husband abused me",
         "My husband hit me",
         "My husband beat me",
+        "my husband is hitting me",
         "I was beaten by my",
         "I have been beten by my",
         "I was hit by"
@@ -258,7 +268,10 @@
         "I don't think I will be safe",
         "I don't feel safe",
         "I think something bad will happen if I leave",
-        "I don't think it's safe"
+        "I don't think it's safe",
+        "I don't think I am safe",
+        "I don't think I will be safe",
+        "If I leave I won't be safe"
       ],
       "responses": [
         "You have to call the police then, don't lose any more time",
@@ -358,7 +371,8 @@
       "tag": "Alone reachoutno ",
       "patterns": [
         "Actually it didn't feel better",
-        "It wasn't better at all"
+        "It wasn't better at all",
+        "actually it didn't make me feel any better"
       ],
       "responses": [
         "Why do you say that?"
@@ -376,7 +390,7 @@
       ],
       "responses": [
         "I am sure that wasn't the intention, but if you feel like they don't get you you don't have to insist talking to them",
-        "Maybe they didn't mean it, you have to try communicating this with them if you haven't already"
+        "Maybe it was just a misunderstanding, you have to try communicating this with them if you haven't already"
       ]
     },
     {
@@ -427,19 +441,21 @@
       ],
       "responses": [
         "You have to learn how to manage your priorities, do you feel like there are some things that stress you out too much?",
-        "You should make some time to disconnect from your problems at least once a day",
-        "I think going for a walk would help you clear your mind",
+        "You should make some time to disconnect from your problems at least once a day, can you find out what stresses you so much?",
+        "I think going for a walk would help you clear your mind, can you find out what stresses you so much?",
         "Do you have anything you like to do and could do now?",
-        "Maybe taking a break for an hour and reading something would clear your mind",
-        "You should try meditating. It will clear your mind"
+        "Maybe taking a break for an hour and reading something would clear your mind, can you find out what stresses you so much?",
+        "You should try meditating. It will clear your mind. Can you find out what stresses you so much?"
       ]
     },
     {
       "tag": "Stress things",
       "patterns": [
         "Work stresses me out",
+        "work stresses me out so much",
         "Work",
         "School stresses me out",
+        "school stresses me out so much",
         "School",
         "Homework stresses me out",
         "Homework",
@@ -447,7 +463,7 @@
         "Friends stress me out"
       ],
       "responses": [
-        "You have to learn setting boundaries with youself and with others in order to be better at time and energy management."
+        "You have to learn setting boundaries with yourself and with others in order to be better at time and energy management."
       ]
     },
     {
@@ -533,6 +549,7 @@
         "I drink",
         "I drink alcohol",
         "I consume alcohol",
+        "i drink too much alcohol",
         "I consume",
         "I take drugs",
         "I took drugs",
@@ -552,7 +569,7 @@
         "I want to kill myself",
         "I don't want to live anymore",
         "I am sick of living",
-        "I want everythig to end",
+        "I want everything to end",
         "I want it to end",
         "I can't take it anymore",
         "I can't live anymore",
@@ -560,13 +577,14 @@
         "I can't go on like this",
         "I am losing it",
         "I can't go on",
-        "My life can't go on"
+        "My life can't go on",
+        "I want to get help, I don't want to live anymore"
       ],
       "responses": [
-        "This is not the answer, talk to me about it so I can help you",
+        "This is not the answer, talk to me about it so I can help you, what happened?",
         "Don't make a permanent decision for something temporary, tell me what happened",
-        "You don't have to do this, you are just going through a rough patch now, tell me about it",
-        "I am sure you don't want this, you just want the pain to stop, talk to me, I can help you with that"
+        "You don't have to do this, you are just going through a rough patch now, tell me what happened",
+        "I am sure you don't want this, you just want the pain to stop, talk to me, I can help you with that, what happened?"
       ]
     },
     {
@@ -575,6 +593,7 @@
         "I feel so restless",
         "It feels like I can't stand still",
         "I feel on edge",
+        "I feel on edge all day long",
         "I am so exhausted",
         "My mind feels blank",
         "I can't focus",
@@ -584,7 +603,7 @@
       ],
       "responses": [
         "Try to take 10 minutes time out and focus on your breathing",
-        "Do you usually consume caffeine or alcohol?",
+        "Do you usually consume caffeine, alcohol or other drugs often?",
         "You need to get enough sleep and exercise a bit",
         "Let's count to 10 together. 1",
         "Tell me what you feel right now"
@@ -652,6 +671,8 @@
       "patterns": [
         "I am having palpitations",
         "My heart beats fast",
+        "My heart is racing",
+        "I am choking",
         "I am sweating a lot",
         "I am shaking",
         "My hands are shaking",
@@ -661,7 +682,7 @@
         "I feel like I am losing control"
       ],
       "responses": [
-        "Try to close your eyes and focus on your breathing",
+        "Try to close your eyes and focus on your breathing, if you can't do that keep telling me what you're feeling",
         "Focus on your breathing for 10 seconds, let's count together. 1"
       ]
     }

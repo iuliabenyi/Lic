@@ -1,8 +1,23 @@
 body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     min-height: 657px;
 }
+
+#navbar {
+    background-color: transparent;
+}
+
+#logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
+}
+
 #allLogin {
     margin: 0;
     position: absolute;
@@ -25,19 +40,23 @@ body {
 
 #userBtn {
     margin-bottom: 20px;
-    background-color: #c86071;
+    background-color: #2f3e64;
     color: white;
 }
 
 #therBtn {
     margin-bottom: 20px;
-    background-color: #c86071;
+    background-color: #2f3e64;
     color: white;
 }
 
+#btnHome {
+    margin-left: 900px;
+    background-color: #2f3e64;
+}
 
 #btnSignup {
     /*margin-right: 10px;*/
     margin-left: 20px;
-    background-color: #c86071;
+    background-color: #2f3e64;
 }

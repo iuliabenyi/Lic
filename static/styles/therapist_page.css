@@ -1,18 +1,19 @@
 body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     min-height: 657px;
 }
 
 #navBar {
-    background: #ffedf9;
+    background: transparent;
 }
 
 #btnHome {
   font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -23,7 +24,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
 }
 
@@ -31,7 +32,7 @@ body {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -43,24 +44,35 @@ body {
 
  #table {
      margin: 30px;
-     margin-top: 50px;
+     margin-top: 20px;
  }
 
  #btnHome {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
+     margin-left: 900px;
  }
+
+
+#logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
+}
 
  #btnLogout {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;

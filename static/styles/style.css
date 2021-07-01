@@ -1,6 +1,6 @@
 :root {
   --body-bg: linear-gradient(135deg, #ffedf9 0%, #ffe0f5 100%);
-  --msger-bg: #fff;
+  --msger-bg: #c0d3f9;
   /*--border: 2px solid #ddd;*/
   --left-msg-bg: #ececec;
   --right-msg-bg: #579ffb;
@@ -23,9 +23,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: var(--body-bg);
+  background-color: #c0d3f9;
   font-family: Helvetica, sans-serif;
-  background: #ffe0f5 no-repeat;
 }
 
 .msger {
@@ -58,8 +57,10 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
-  background: #ffedf9;
-  background-repeat: no-repeat;
+  background-image: url("back2.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    object-fit: fill;
 }
 .msger-chat::-webkit-scrollbar {
   width: 6px;
@@ -151,7 +152,7 @@ body {
 }
 
 .msger-chat {
-  background-color: #fcfcfe;
+  background-color: #2f3e64;
 
 }
 
@@ -160,7 +161,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
 }
 
@@ -168,7 +169,7 @@ body {
   font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -178,7 +179,7 @@ body {
   font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -189,7 +190,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
 }
 
@@ -198,10 +199,11 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
 }
 
 #navBar {
   max-height: 50px;
+  background-color: transparent;
 }

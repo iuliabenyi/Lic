@@ -1,7 +1,51 @@
 body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     min-height: 657px;
+}
+
+#navBar {
+    background: transparent;
+}
+
+ #btnHome {
+  font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #2f3e64;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+     margin-left: 900px;
+}
+
+ #logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
+}
+
+ #sendBtn {
+  font-weight: bold;
+  margin: 10px;
+  font-weight: bold;
+  background-color: #2f3e64;
+  color: white;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+
+ #btnLogout {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  background-color: #2f3e64;
+  color: white;
 }
 
  #pageBtn {
@@ -9,7 +53,7 @@ body {
      margin-top: 40px;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
@@ -19,8 +63,23 @@ body {
      font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
   transition: background 0.23s;
+ }
+
+ #wrapper {
+    overflow: hidden;
+    margin-top: 143px;
+ }
+
+ #allText {
+     width: 810px;
+     float:left;
+     font-size: 25px;
+ }
+
+ #texting {
+    overflow: hidden;
  }

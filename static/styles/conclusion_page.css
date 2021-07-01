@@ -1,11 +1,13 @@
  body {
-    background: linear-gradient(#ffedf9, #ffe0f5);
+    background-image: url("back2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
-    min-height: 657px;
+    min-height: 640px;
+     max-width: 1365px;
 }
 
 #navBar {
-    background: #ffedf9;
+    background: transparent;
 }
 
  .flex {
@@ -77,19 +79,31 @@
 
  #title {
      font-size: 40px;
+     margin-bottom: 60px;
+     margin-top: -22px;
  }
 
  #userName {
      font-size: 30px;
  }
 
+ #logo {
+    background-image: url("default-monochrome.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 239px;
+    height: 94px;
+    margin-left: 30px;
+}
+
  #btnHome {
   font-weight: bold;
   margin: 10px;
   font-weight: bold;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
   cursor: pointer;
+     margin-left: 890px;
   transition: background 0.23s;
 }
 
@@ -98,13 +112,29 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
-  background-color: #c86071;
+  background-color: #2f3e64;
   color: white;
 }
 
  #page-content {
      margin-left: -760px;
      margin-top: -50px;
+     /*float:left;*/
+ }
+
+ #firstCol {
+     float: left;
+     margin-left: 646px;
+ }
+
+ #secondCol {
+     overflow: hidden;
+     margin-left: 930px;
+    margin-right: 175px;
+ }
+
+ #secondSide {
+     margin-top: -400px;
  }
 
  #page-content2 {
@@ -112,51 +142,75 @@
  }
 
  #suicidalDiv {
-     margin-left: 590px;
-     margin-right: 20px;
-     margin-top: -428px;
+     /*margin-left: 590px;*/
+     /*margin-right: 20px;*/
+     /*margin-top: -428px;*/
      border: 1px solid grey;
-     padding: 25px;
+     padding: 50px;
      background-color: white;
      max-width: 400px;
      margin-bottom: 20px;
+     height: 186px;
+    width: 261px;
+    background-color: rgba(0,0,0, 0.1);
  }
 
  #anxietyDiv {
-     margin-left: 590px;
-     margin-right: 20px;
+     /*margin-left: 590px;*/
+     /*margin-right: 20px;*/
      border: 1px solid grey;
-     padding: 25px;
+     padding: 50px;
      background-color: white;
      max-width: 400px;
      margin-bottom: 20px;
+     height: 186px;
+    width: 261px;
+    background-color: rgba(0,0,0, 0.1);
  }
 
  #panicDiv {
-     margin-left: 590px;
-     margin-right: 20px;
+     /*margin-left: 590px;*/
+     /*margin-right: 20px;*/
      border: 1px solid grey;
-     padding: 25px;
+     padding: 50px;
      background-color: white;
      max-width: 400px;
+     margin-bottom: 20px;
+     background-color: rgba(0,0,0, 0.1);
+ }
+
+ #stressDiv {
+     /*margin-left: 590px;*/
+     /*margin-right: 20px;*/
+     border: 1px solid grey;
+     padding: 50px;
+     background-color: white;
+     max-width: 400px;
+     background-color: rgba(0,0,0, 0.1);
  }
 
  #suicidalN {
-     margin-top: 30px;
-     margin-left: 90px;
-     font-size: 20px;
+     /*margin-top: 30px;*/
+     /*margin-left: 90px;*/
+     font-size: 30px;
  }
 
  #anxietyN{
-     margin-top: 30px;
-     margin-left: 182px;
-     font-size: 20px;
+     /*margin-top: 30px;*/
+     /*margin-left: 182px;*/
+     font-size: 30px;
  }
 
  #panicN {
-     margin-top: 30px;
-     margin-left: 200px;
-     font-size: 20px;
+     /*margin-top: 30px;*/
+     /*margin-left: 200px;*/
+     font-size: 30px;
+ }
+
+ #stressN {
+     /*margin-top: 30px;*/
+     /*margin-left: 200px;*/
+     font-size: 30px;
  }
 
  #chart-line {
@@ -167,14 +221,19 @@
  }
 
  #suicidalTag {
-     font-size: 22px;
+     font-size: 30px;
+     width: 130px;
  }
 
   #anxietyTag {
-     font-size: 22px;
+     font-size: 30px;
  }
 
    #panicTag {
-     font-size: 22px;
+     font-size: 30px;
+ }
+
+   #stressTag {
+     font-size: 30px;
  }
 

@@ -17,6 +17,9 @@
 <nav id="navBar" class="navbar navbar-expand-lg">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+                <div id="logo"></div>
+          </li>
       <li class="nav-item">
         <form action='/' btnLogoutmethod='GET'>
             <input class="btn btn-primary" type="submit" id="btnHome" name="btnHome" value="Home">
@@ -33,51 +36,64 @@
 
     <div id="title" class="d-flex justify-content-center">Dominant feelings</div>
 <!--    <div id="userName" class="d-flex justify-content-center">{{userName}}</div>-->
-
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row">
-            <div id="page-content2" class="container-fluid d-flex justify-content-center">
-                <div class="col-sm-8 col-md-3">
-                    <div class="card">
-                        <div class="card-body" style="height: 380px;">
-                            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                </div>
-                            </div> <canvas id="chart-line" class="chartjs-render-monitor" style="display: block;"></canvas>
+<div id="wrapper">
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row">
+                <div id="page-content2" class="container-fluid d-flex justify-content-center">
+                    <div class="col-sm-8 col-md-3">
+                        <div class="card">
+                            <div class="card-body" style="height: 388px;">
+                                <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                    <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                    </div>
+                                </div> <canvas id="chart-line" class="chartjs-render-monitor" style="display: block;"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div id="secondSide">
+        <div id="firstCol">
+      <div class="d-flex" id="suicidalDiv">
+        <div id="suicidalTag"></div>
+    <!--    <div class="b4-test">-->
+    <!--      <progress id="suicidalProgress" class="progress" max="100"></progress>-->
+    <!--    </div>-->
+          <div id="suicidalN"></div>
+      </div>
+      <div class="d-flex" id="anxietyDiv">
+          <div id="anxietyTag"></div>
+    <!--    <div class="b4-test">-->
+    <!--      <progress id="anxietyProgress" class="progress" max="100"></progress>-->
+    <!--    </div>-->
+          <div id="anxietyN"></div>
+      </div>
+        </div>
+        <div id="secondCol">
+      <div class="d-flex" id="panicDiv">
+          <div id="panicTag"></div>
+    <!--    <div class="b4-test">-->
+    <!--      <progress id="panicProgress" class="progress" max="100"></progress>-->
+    <!--    </div>-->
+          <div id="panicN"></div>
+      </div>
 
-  <div class="d-flex" id="suicidalDiv">
-    <div id="suicidalTag"></div>
-<!--    <div class="b4-test">-->
-<!--      <progress id="suicidalProgress" class="progress" max="100"></progress>-->
-<!--    </div>-->
-      <div id="suicidalN"></div>
-  </div>
-  <div class="d-flex" id="anxietyDiv">
-      <div id="anxietyTag"></div>
-<!--    <div class="b4-test">-->
-<!--      <progress id="anxietyProgress" class="progress" max="100"></progress>-->
-<!--    </div>-->
-      <div id="anxietyN"></div>
-  </div>
-  <div class="d-flex" id="panicDiv">
-      <div id="panicTag"></div>
-<!--    <div class="b4-test">-->
-<!--      <progress id="panicProgress" class="progress" max="100"></progress>-->
-<!--    </div>-->
-      <div id="panicN"></div>
-  </div>
+        <div class="d-flex" id="stressDiv">
+          <div id="stressTag"></div>
+    <!--    <div class="b4-test">-->
+    <!--      <progress id="panicProgress" class="progress" max="100"></progress>-->
+    <!--    </div>-->
+          <div id="stressN"></div>
+      </div>
+        </div>
+    </div>
 
 </div>
 
@@ -106,7 +122,8 @@
     let unique = [...new Set(tags)];
     let duplicates = unique.map(value => [value, tags.filter(str => str === value).length]);
     console.log(duplicates);
-    duplicates.sort((a, b) => a[1].toString().localeCompare(b[1]));
+    console.log(duplicates[0][0] + " " + duplicates[0][1]);
+    duplicates.sort((a, b) => a[1] - b[1]);
     console.log(duplicates);
 
     var top1 = null,top2 = null, top3 = null, top4 = null, top5 = null, top6 = null, top7 = null/*, top8 = null, top9 = null, top10 = null*/;
@@ -117,6 +134,9 @@
             if(duplicates[i][0] !== "" && duplicates[i][0] !== "[" && duplicates[i][0] !== "]")
                 if(duplicates[i][0][0] === duplicates[i][0][0].toUpperCase())
                     {
+                        console.log("-----------");
+                        console.log("+" + duplicates[i][0] + "+");
+
                         top1 = duplicates[i][0];
                         nTop1 = duplicates[i][1];
                         i--;
@@ -174,6 +194,7 @@
         top4 = "Substance abuse";
     if(top5 === "Substance")
         top5 = "Substance abuse";
+    console.log(top1 + " " + top2 + " " + top3 + " " + top4 + " " + top5);
 
     $(document).ready(function() {
         var ctx = $("#chart-line");
@@ -196,7 +217,7 @@
             }
         });
     });
-    var suicidalN = 0, anxietyN = 0, panicN = 0;
+    var suicidalN = 0, anxietyN = 0, panicN = 0, stressN = 0;
     for(let i = 0; i < duplicates.length; i++) {
         if(duplicates[i][0].includes("Suicidal"))
             suicidalN = duplicates[i][1];
@@ -204,6 +225,8 @@
             anxietyN = duplicates[i][1];
         if(duplicates[i][0].includes("Panic"))
             panicN = duplicates[i][1];
+        if(duplicates[i][0].includes("Stress"))
+            stressN = duplicates[i][1];
 
     }
     console.log(suicidalN, anxietyN, panicN);
@@ -220,9 +243,11 @@
     // document.getElementById("anxietyProgress").value = anxietyN * 10;
     document.getElementById("panicTag").innerText = "Panic Score";
     // document.getElementById("panicProgress").value = panicN * 10;
+    document.getElementById("stressTag").innerText = "Stress Score";
     document.getElementById("suicidalN").innerText = suicidalN;
     document.getElementById("anxietyN").innerText = anxietyN;
     document.getElementById("panicN").innerText = panicN;
+    document.getElementById("stressN").innerText = stressN;
 
 
 
